@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>DOJ Learn Laravel</title>
-
-    </head>
-    <body class="">
-      Hello Fro Home
-    </body>
-</html>
+<x-layout>
+    <h1>Home Page</h1>
+</x-layout>
