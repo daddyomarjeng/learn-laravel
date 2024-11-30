@@ -8,7 +8,7 @@
 laravel new  project-name
 ```
 
-## Database Connection
+# Database Connection
 
 -   In env you can setup your database connection
 
@@ -34,3 +34,10 @@ DB_CONNECTION=sqlite
 ```bash
 sudo apt-get install php-sqlite3
 ```
+
+# Routes
+
+-   They can be for console, web and apis,
+-   They take in the path that the user wants to access and returns a callback function containing the result
+-   The web returns a method called **View** which takes in the name of the view you want to display
+    -   All Views are in the **resources/views** directory
