@@ -3,15 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <script src="https://cdn.tailwindcss.com"></script>
         <title>Home</title>
 
     </head>
     <body class="">
         <nav>
-            <a href="/">Home</a>
-            <a href="">About</a>
-            <a href="">Contact</a>
+           <x-nav-item href="/" :isActive="true">Home</x-nav-item>
+            <x-nav-item href="/about">About</x-nav-item>
+            <x-nav-item href="/contact">Contact</x-nav-item>
         </nav>
 
         {{-- <?php echo $slot; ?> --}}
