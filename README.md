@@ -68,7 +68,7 @@ Route::get('/contact', function () {
 php artisan install:api
 ```
 
-# Components & Slots
+# Components
 
 -   Components are any kind of reusable blocks that can be referenced in multiple places around your application. Eg: _Menu, Dropdowns, buttons, layouts, etc.._
 -   They can be found in **resources/views/components**
@@ -136,10 +136,10 @@ php artisan install:api
     ```
 
 -   **Props=>** By default all values added to the component will be considered as strings and attributes,
--   if you want to add a props(example: something that is not an accepted html attribut), we can just add a column before the prop name which allows us to bind some dynamic value or data to the prop as it's value
+-   if you want to add a props(example: something that is not an accepted html attribute), we can just add a column before the prop name which allows us to bind some dynamic value or data to the prop as it's value
 -   When we accept a prop into a component, the first thing we need to do is to declare the prop we are accepting at the top of the file by using a **blade directive called _@props_** and pass in it an array of props we want to accept and any default value we want to give to those props.
 
--   **Conditional Classes**We can use conditional css classes in blade by using the blade directive: **@class**
+-   **Conditional Classes=>** We can use conditional css classes in blade by using the blade directive: **@class**
 
 ```php
 //nav-item.blade.php
@@ -159,4 +159,36 @@ php artisan install:api
         <x-nav-item href="/about">About</x-nav-item>
         <x-nav-item href="/contact">Contact</x-nav-item>
     </nav>
+```
+
+# Slots
+
+-   Slots can be considered as different areas where we paste in content
+-   Like we learn earlier, we can use the variable **slot** to access anything wrapped within a component.
+-   **Types of Slots=>** We have default slot and named slots.
+    -   **Default Slot=>** This variable holds content of anything that is wrapped within the component
+    -   **Named Slots=>** These are multiple slots that are identift by using names and can be accessed as variables in the component. We can pass a slot by preceeding it with: **x-slot:** and then followed by the slot name or variable.
+
+```php
+//layout.blade.php
+  <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
+      </div>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      {{ $slot }}
+      </div>
+    </main>
+```
+
+```php
+//home.blade.php
+<x-layout>
+    <x-slot:heading>
+        Home Page
+    </x-slot:heading>
+    <h1>Hello from the Home Page</h1>
+</x-layout>
 ```
