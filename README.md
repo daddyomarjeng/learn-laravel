@@ -135,9 +135,9 @@ php artisan install:api
      </nav>
     ```
 
--   **Props=>** By default all values added to the component will be considered as strings and attributes,
--   if you want to add a props(example: something that is not an accepted html attribute), we can just add a column before the prop name which allows us to bind some dynamic value or data to the prop as it's value
+-   **Props=>** By default all values added to the component will be considered as attributes,
 -   When we accept a prop into a component, the first thing we need to do is to declare the prop we are accepting at the top of the file by using a **blade directive called _@props_** and pass in it an array of props we want to accept and any default value we want to give to those props.
+-   All props and attributes as considered as string values by default. If we want to assign variables or other values to them we can just add a column before the prop name which allows us to bind some dynamic value or data to the prop as it's value.
 -   if we do not declare the prop at the top of the file, blade will assume that the prop is an attribute and will treat it like that.
 
 -   **Conditional Classes=>** We can use conditional css classes in blade by using the blade directive: **@class**
@@ -219,4 +219,53 @@ php artisan install:api
     <x-nav-item href="/about" :isActive="request()->is('about')">About</x-nav-item>
     <x-nav-item href="/contact" :isActive="request()->is('contact')">Contact</x-nav-item>
 </div>
+```
+
+# Conditionals
+
+-   We can conditionally render elements using conditionals.
+-   We can either use the traditional php method or use blade helper directives to achieve it.
+
+```php
+// Using Raw PHP
+// nav-item.blade.php
+@props(['isActive' => false, 'type' => 'a'])
+<?php if($type==="a") : ?>
+<a class="{{ $isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
+    aria-current="{{ $isActive ? 'page' : 'false' }}" {{ $attributes }}>
+    {{ $slot }}
+
+</a>
+<?php else: ?>
+<button
+    class="{{ $isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
+    aria-current="{{ $isActive ? 'page' : 'false' }}" {{ $attributes }}>
+    {{ $slot }}
+
+</button>
+<?php endif ?>
+
+```
+
+```php
+// Using Blade Directives
+// nav-item.blade.php
+@props(['isActive' => false, 'type' => 'a'])
+
+@if ($type === 'a')
+    <a class="{{ $isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
+        aria-current="{{ $isActive ? 'page' : 'false' }}" {{ $attributes }}>
+        {{ $slot }}
+
+    </a>
+@else
+    <button
+        class="{{ $isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
+        aria-current="{{ $isActive ? 'page' : 'false' }}" {{ $attributes }}>
+        {{ $slot }}
+
+    </button>
+@endif
+
+
 ```
