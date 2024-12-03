@@ -113,7 +113,7 @@ php artisan install:api
 
 # Attributes, Props, & Conditional Classes(Styling)
 
--   **Attributes=>** All Lavarevl Components also have access to an **attributes object**, example: _href, class, id, etc._ - You can access it by using the whole attributes passed or by getting only specific attribute:
+-   **Attributes=>** All Lavarevl Components also have access to an **attributes object(HTML Attributes)**, example: _href, class, id, etc._ - You can access it by using the whole attributes passed or by getting only specific attribute:
 
     ```php
     //nav-item.blade.php
@@ -138,6 +138,7 @@ php artisan install:api
 -   **Props=>** By default all values added to the component will be considered as strings and attributes,
 -   if you want to add a props(example: something that is not an accepted html attribute), we can just add a column before the prop name which allows us to bind some dynamic value or data to the prop as it's value
 -   When we accept a prop into a component, the first thing we need to do is to declare the prop we are accepting at the top of the file by using a **blade directive called _@props_** and pass in it an array of props we want to accept and any default value we want to give to those props.
+-   if we do not declare the prop at the top of the file, blade will assume that the prop is an attribute and will treat it like that.
 
 -   **Conditional Classes=>** We can use conditional css classes in blade by using the blade directive: **@class**
 
@@ -191,4 +192,31 @@ php artisan install:api
     </x-slot:heading>
     <h1>Hello from the Home Page</h1>
 </x-layout>
+```
+
+# Get Current Page
+
+-   We can use the globally available request object in laravel to get access to the current path(url) of our app
+-   We can use that to style or perform actions in our app
+
+```php
+// nav-item.blad.php
+@props(["isActive"=> false])
+<a
+    class="{{ $isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
+    aria-current="{{ $isActive ? "page" : "false" }}"
+    {{ $attributes }}
+>
+    {{ $slot }}
+</a>
+
+```
+
+```php
+// layout.blade.php
+<div class="ml-10 flex items-baseline space-x-4">
+    <x-nav-item href="/" :isActive="request()->is('/')">Home</x-nav-item>
+    <x-nav-item href="/about" :isActive="request()->is('about')">About</x-nav-item>
+    <x-nav-item href="/contact" :isActive="request()->is('contact')">Contact</x-nav-item>
+</div>
 ```
