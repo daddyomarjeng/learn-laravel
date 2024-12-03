@@ -194,7 +194,7 @@ php artisan install:api
 </x-layout>
 ```
 
-# Get Current Page
+# Get Current Page(path/url)
 
 -   We can use the globally available request object in laravel to get access to the current path(url) of our app
 -   We can use that to style or perform actions in our app
