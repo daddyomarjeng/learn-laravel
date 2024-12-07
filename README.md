@@ -562,3 +562,70 @@ $user = new User();
 ```
 
 -   No manual `require` is needed because Laravel’s autoloader resolves the namespace and file path.
+
+# Namespace
+
+-   In Laravel (and PHP), a **namespace** is a way to group related classes, interfaces, traits, or functions to avoid name collisions and improve code organization.
+
+#### Why Use Namespaces?
+
+1. **Avoid Conflicts**:
+    - Multiple libraries or parts of the application might have classes with the same name (e.g., `User`). Namespaces prevent these conflicts.
+2. **Organize Code**:
+    - Namespaces help categorize classes logically (e.g., `App\Controllers`, `App\Models`).
+3. **Simplify Imports**:
+    - Instead of writing long paths repeatedly, you can use `use` statements to import and use classes.
+
+#### Laravel’s Default Namespace:
+
+By default, all application classes are under the `App` namespace, as defined in the `composer.json` file:
+
+```json
+"psr-4": {
+    "App\\": "app/"
+}
+```
+
+#### How to Use Namespaces:
+
+1. **Declare a Namespace**:
+
+    - At the top of your file:
+
+        ```php
+        namespace App\Models;
+
+        class User {
+            // Code
+        }
+        ```
+
+2. **Access Classes with Namespaces**:
+
+    - Use the full namespace:
+        ```php
+        $user = new \App\Models\User();
+        ```
+    - Or import it using `use`:
+
+        ```php
+        use App\Models\User;
+
+        $user = new User();
+        ```
+
+#### Example:
+
+```php
+namespace App\Http\Controllers;
+
+use App\Models\User;
+
+class UserController {
+    public function index() {
+        return User::all();
+    }
+}
+```
+
+-   Here, the `UserController` class is grouped under `App\Http\Controllers`, and it imports the `User` model from `App\Models`.
