@@ -511,3 +511,54 @@ Route::get('/user/{id}', function ($id) {
     return "User ID: " . $id;
 })->where('id', '[0-9]+'); // Only numeric IDs are allowed
 ```
+
+# Autoload
+
+-   In Laravel, **autoload** refers to the mechanism that allows PHP classes, interfaces, or traits to be loaded automatically when they are needed, without requiring manual `include` or `require` statements.
+
+#### How It Works:
+
+1. **Composer Autoloading**:
+
+    - Laravel uses [Composer](https://getcomposer.org/), a dependency manager for PHP, to handle autoloading.
+    - Composer generates a file (`vendor/autoload.php`) that automatically includes all classes based on their namespaces and file structure.
+    - Laravel uses the **PSR-4 autoloading standard**, which maps namespaces directly to directory structures.
+
+2. **Defining Autoload in `composer.json`**:
+
+    - The `autoload` section in `composer.json` specifies the mapping:
+        ```json
+        "autoload": {
+            "psr-4": {
+                "App\\": "app/"
+            }
+        }
+        ```
+    - Here, the namespace `App\` maps to the `app/` directory, so any class in the `App` namespace will be located in the `app` folder.
+
+3. **Why Autoload?**:
+    - Reduces repetitive code by automatically resolving file locations.
+    - Keeps the application organized by aligning namespaces with directory structures.
+    - Enhances maintainability by removing manual file inclusions.
+
+#### Example:
+
+-   When you define a class in `app/Models/User.php` like:
+
+```php
+namespace App\Models;
+
+class User {
+    // Class code here
+}
+```
+
+-   You can use it anywhere in your project with:
+
+```php
+use App\Models\User;
+
+$user = new User();
+```
+
+-   No manual `require` is needed because Laravel’s autoloader resolves the namespace and file path.
