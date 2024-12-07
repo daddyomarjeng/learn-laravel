@@ -2,7 +2,13 @@
     <x-slot:heading>
         Blogs Page
     </x-slot:heading>
-    @foreach ($blogs as $blog)
-        <li class="leading-2"><strong>{{ $blog['title'] }}</strong> - Written by: {{ $blog['author'] }}</li>
-    @endforeach
+    <ul>
+        @foreach ($blogs as $blog)
+            <li class="leading-2">
+                <a href="/blogs/{{ $blog['id'] }}">
+                    <strong>{{ $blog['title'] }}</strong> - Written by: {{ $blog['author'] }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
 </x-layout>

@@ -1,50 +1,93 @@
-> # Learn Laravel
+# **Learn Laravel**
 
--   Installations and Documentation: https://laravel.com/docs/11.x/installation
+### **Installations and Documentation**
 
--   Creating a new laravel Project
+For a complete guide on installation, visit: [Laravel Official Documentation](https://laravel.com/docs/11.x/installation).
+
+### **Creating a New Laravel Project**
+
+To create a new Laravel project, use the following command:
 
 ```bash
-laravel new  project-name
+laravel new project-name
 ```
 
-# Database Connection
+> # PHP & LARAVEL TIPS
 
--   In env you can setup your database connection
+-   **dd function =>** means dump and die, dumps the data in the browser and then kills the execution.
 
-## Using sqlite
+```php
+dd("DOJ")
+```
 
--   if you prefer to use sqlite
-    -   Create file called database.sqlite in this folder as database/database.sqlite
-    -   Open the .env file and change MySQL to SQLite
-    -   Comment password and username and databaseName
-    -   run php artisan migrate enjoy
+-   **Laravel ARR class=>** is a laravel helper class that takes in an array and has a lot of other helper methods to help work with arrays. Eg.:
+
+```php
+   $post =  Arr::first($blogs, function($blog) {
+        return $blog['id'] == 1;
+    });
+```
+
+-   **Accessing outside data/variables in a closure=>** example if we want to access a variable in a function but the variable is declared outside the function. We have two ways to access it:
+    -   **1. The 'use' function=>** eg use($id)
+    ```php
+      $post =  Arr::first($blogs, function($blog) use($id) {
+        return $blog['id'] == $id;
+    });
+    ```
+    -   **2. The 'fn' or 'arrow function'**
+    ```php
+    $post = ARR::first($blogs, fn($blog)=>$blog['id'] == $id);
+    ```
+
+# **Database Connection**
+
+### **Setting Up Database Connection in `.env`**
+
+You can configure your database connection in the `.env` file.
+
+### **Using SQLite**
+
+If you prefer to use SQLite:
+
+1. Create a file named `database.sqlite` inside the `database/` directory.
+2. Open the `.env` file and change the `DB_CONNECTION` value to `sqlite`.
+3. Comment out the `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` entries.
+4. Run the migration command:
+    ```bash
+    php artisan migrate
+    ```
+5. Enjoy your SQLite setup.
+
+Example `.env` configuration for SQLite:
 
 ```env
 DB_CONNECTION=sqlite
 
-#DB_HOST=127.0.0.1
-#DB_PORT=3306
-#DB_DATABASE=database
-#DB_USERNAME=doj
-#DB_PASSWORD=password
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=database
+# DB_USERNAME=doj
+# DB_PASSWORD=password
 ```
 
--   If you do not have sqlite installed, you can install using the folklowing command:
+### **Installing SQLite**
+
+If SQLite is not installed, use the following command to install it:
 
 ```bash
 sudo apt-get install php-sqlite3
 ```
 
-# Routes
+# **Routes**
 
--   They can be for console, web and apis,
--   They take in the path that the user wants to access and returns a callback function containing the result
--   The web returns a method called **View** which takes in the name of the view you want to display
+-   Laravel routes define the paths that users can access in your application. They support web, API, and console routes.
 
-    -   All Views are in the **resources/views** directory
+### **Web Routes**
 
--   Example of web routes:
+-   Web routes typically return views using the `view()` method. All views are stored in the `resources/views` directory.
+
+#### **Example: Defining Web Routes**
 
 ```php
 <?php
@@ -62,17 +105,68 @@ Route::get('/contact', function () {
 });
 ```
 
--   If your application will also offer a stateless API, you may enable API routing using the install:api Artisan command:
+### **API Routing**
+
+-   To enable API routing in your application, you can use the following command:
 
 ```bash
 php artisan install:api
 ```
 
-# Components
+### **Route Wildcards (Dynamic Routes)**
 
--   Components are any kind of reusable blocks that can be referenced in multiple places around your application. Eg: _Menu, Dropdowns, buttons, layouts, etc.._
--   They can be found in **resources/views/components**
--   The folder name has to be spelled correctly, like **components**
+-   Dynamic routes allow you to capture parameters directly from the URL by using placeholders in curly braces `{}`.
+
+#### **Example: Single Wildcard**
+
+```php
+Route::get('/user/{id}', function ($id) {
+    return "User ID: " . $id;
+});
+```
+
+-   In this example, `{id}` is a placeholder that captures the dynamic value from the URL.
+-   Accessing `/user/123` will return "User ID: 123".
+
+#### **Example: Multiple Wildcards**
+
+```php
+Route::get('/post/{postId}/comment/{commentId}', function ($postId, $commentId) {
+    return "Post ID: $postId, Comment ID: $commentId";
+});
+```
+
+#### **Optional Wildcards**
+
+-   Add a `?` to make a parameter optional, and provide a default value:
+
+```php
+Route::get('/user/{name?}', function ($name = 'Guest') {
+    return "Hello, " . $name;
+});
+```
+
+#### **Route Constraints**
+
+-   You can restrict the values captured by a wildcard using the `where` method:
+
+```php
+Route::get('/user/{id}', function ($id) {
+    return "User ID: " . $id;
+})->where('id', '[0-9]+'); // Only numeric IDs are allowed
+```
+
+# **Components**
+
+-   Laravel components are reusable blocks, such as menus, buttons, or layouts, that can be used throughout your application.
+
+### **Directory**
+
+-   All components should be stored in the `resources/views/components` directory. Ensure the folder name is spelled as `components`.
+
+### **Using Components**
+
+-   To use a component, prefix its name with `x-` in your Blade files. For example:
 -   Their is a global variable available in component files called **slot** that we can use to display anything that is wrapped withing the componet
     -   You can use the php echo to display it or you can use blade template helper, which enables you to call variables by wrapping them between four curly brackets.
     -   Under the hood, blade transforms the content within the brackets as echo whatever is inside the brackets.
@@ -302,13 +396,118 @@ Route::get('/blogs', function () {
 ```
 
 ```php
-//views/blogs.blade.php
+// views/blogs.blade.php
 <x-layout>
     <x-slot:heading>
         Blogs Page
     </x-slot:heading>
-    @foreach ($blogs as $blog)
-        <li class="leading-2"><strong>{{ $blog['title'] }}</strong> - Written by: {{ $blog['author'] }}</li>
-    @endforeach
+    <ul>
+        @foreach ($blogs as $blog)
+            <li class="leading-2">
+                <a href="/blogs/{{ $blog['id'] }}">
+                    <strong>{{ $blog['title'] }}</strong> - Written by: {{ $blog['author'] }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
 </x-layout>
+```
+
+# Route Wildcards (Dynamic Routes)
+
+In Laravel, **route wildcards** (or dynamic routes) allow you to define routes with placeholders that can capture dynamic values from the URL. These placeholders are defined using curly braces `{}`.
+
+For example:
+
+```php
+Route::get('/user/{id}', function ($id) {
+    return "User ID: " . $id;
+});
+```
+
+In this example:
+
+-   `{id}` is a wildcard that captures the value from the URL.
+-   When accessing `/user/123`, the `$id` parameter will hold the value `123`.
+
+-   A moore real world example is:
+
+```php
+//  routes/web.php
+Route::get('/blogs/{id}', function ($id) {
+    $blogs = [
+        [
+            "id"=>1,
+            "title" => "Mastering Laravel Without Prior PHP Knowledge",
+            "post" => "I started writing Laravel code with minimal PHP experience. To my surprise, it turned out to be much easier than I expected. Laravel's simplicity and extensive documentation made the journey enjoyable.",
+            "author" => "Omar Jeng"
+        ],
+        [
+            "id"=>2,
+            "title" => "Understanding Eloquent in Laravel",
+            "post" => "Eloquent ORM simplifies database interactions in Laravel. Even without a deep understanding of SQL, its intuitive methods make handling data seamless and efficient.",
+            "author" => "Aisha Conteh"
+        ],
+        [
+            "id"=>3,
+            "title" => "Tips for Building REST APIs with Laravel",
+            "post" => "Laravel makes building REST APIs straightforward. From routing to controllers and resource transformations, the framework ensures clean and maintainable API development.",
+            "author" => "Lamin Sanyang"
+        ],
+        [
+            "id"=>4,
+            "title" => "Deploying a Laravel Application",
+            "post" => "Deploying a Laravel app can seem challenging at first, but tools like Forge and Vapor simplify the process. With proper configurations, you can get your app live in no time.",
+            "author" => "Fatou Jobe"
+        ],
+    ];
+//    $post =  Arr::first($blogs, function($blog) use($id) {
+//         return $blog['id'] == $id;
+//     });
+    $post = ARR::first($blogs, fn($blog)=>$blog['id'] == $id);
+    // dd($post);
+    return view('blog', ['blog'=>$post]);
+});
+```
+
+```php
+// views/blog.blade.php
+<x-layout>
+    <x-slot:heading>
+        Blog Page
+    </x-slot:heading>
+    <h2 class="font-bold">{{ $blog['title'] }}</h2>
+
+    <p class="my-8 text-sm">
+        {{ $blog['post'] }}
+    </p>
+    <span class="text-gray-400"><strong class="text-gray-700">Author:</strong> {{ $blog['author'] }}</span>
+</x-layout>
+
+```
+
+### Key Features:
+
+1. **Dynamic Parameters**: Wildcards let you capture data directly from the URL.
+2. **Multiple Wildcards**: You can define multiple wildcards in the same route, like so:
+    ```php
+    Route::get('/post/{postId}/comment/{commentId}', function ($postId, $commentId) {
+        return "Post ID: $postId, Comment ID: $commentId";
+    });
+    ```
+3. **Optional Parameters**: Add a `?` after the parameter to make it optional, and provide a default value:
+    ```php
+    Route::get('/user/{name?}', function ($name = 'Guest') {
+        return "Hello, " . $name;
+    });
+    ```
+
+### Named Constraints:
+
+You can restrict the type of values captured using route constraints:
+
+```php
+Route::get('/user/{id}', function ($id) {
+    return "User ID: " . $id;
+})->where('id', '[0-9]+'); // Only numeric IDs are allowed
 ```
