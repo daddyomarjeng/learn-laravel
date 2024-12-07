@@ -629,3 +629,114 @@ class UserController {
 ```
 
 -   Here, the `UserController` class is grouped under `App\Http\Controllers`, and it imports the `User` model from `App\Models`.
+
+# Models
+
+-   In Laravel, a **model** is a representation of a table in the database. It acts as the primary way to interact with data using the **Eloquent ORM (Object-Relational Mapping)**.
+
+#### Key Features of Models:
+
+1. **Database Table Mapping**:
+
+    - Each model corresponds to a database table.
+    - By default, Laravel assumes the table name is the plural form of the model name (e.g., `User` model maps to `users` table).
+
+2. **Querying Data**:
+
+    - Models allow you to perform CRUD operations using Eloquent's intuitive and expressive syntax.
+
+3. **Relationships**:
+
+    - Models define relationships like `one-to-one`, `one-to-many`, `many-to-many`, etc.
+
+4. **Attributes & Casting**:
+    - Models handle data attributes and casting them to specific types (e.g., `datetime`, `boolean`).
+
+#### Defining a Model:
+
+-   You can create a model using the Artisan command:
+
+```bash
+php artisan make:model User
+```
+
+-   The `app/Models/User.php` file is generated:
+
+```php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model {
+    protected $fillable = ['name', 'email', 'password'];
+}
+```
+
+#### Using a Model:
+
+1. **Retrieve Data**:
+
+    ```php
+    use App\Models\User;
+
+    $users = User::all(); // Get all users
+    $user = User::find(1); // Find user by ID
+    ```
+
+2. **Create Data**:
+
+    ```php
+    User::create([
+        'name' => 'Omar Jeng',
+        'email' => 'omar@example.com',
+        'password' => bcrypt('password'),
+    ]);
+    ```
+
+3. **Update Data**:
+
+    ```php
+    $user = User::find(1);
+    $user->name = 'Updated Name';
+    $user->save();
+    ```
+
+4. **Delete Data**:
+    ```php
+    $user = User::find(1);
+    $user->delete();
+    ```
+
+#### Relationships in Models:
+
+-   Models can define relationships with other models. For example:
+
+```php
+// In User.php
+public function posts() {
+    return $this->hasMany(Post::class);
+}
+```
+
+#### Example:
+
+```php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model {
+    protected $fillable = ['title', 'content', 'user_id'];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+}
+```
+
+-   With this relationship:
+
+```php
+$post = Post::find(1);
+echo $post->user->name; // Access the user of the post
+```
