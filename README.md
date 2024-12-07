@@ -44,7 +44,7 @@ dd("DOJ")
 
 ### **Setting Up Database Connection in `.env`**
 
-You can configure your database connection in the `.env` file.
+-   You can configure your database connection in the `.env` file.
 
 ### **Using SQLite**
 
@@ -77,6 +77,12 @@ If SQLite is not installed, use the following command to install it:
 
 ```bash
 sudo apt-get install php-sqlite3
+```
+
+-   You can view information about your database connection by running the command:
+
+```bash
+php artisan db:show
 ```
 
 # **Routes**
@@ -740,3 +746,212 @@ class Post extends Model {
 $post = Post::find(1);
 echo $post->user->name; // Access the user of the post
 ```
+
+# Migrations in Laravel
+
+-   Migrations in Laravel are a type of version control for your database. They allow you to define and manage database schemas (tables, columns, indexes, etc.) using PHP code, rather than writing raw SQL queries.
+
+---
+
+### **Why Use Migrations?**
+
+1. **Version Control for Databases**:
+
+    - Migrations let you track changes to the database schema over time.
+    - Each migration is like a "commit" that documents a change, making it easier to collaborate and roll back changes when needed.
+
+2. **Database Portability**:
+
+    - Migrations are database-agnostic, meaning they work across different database systems (e.g., MySQL, PostgreSQL, SQLite).
+    - You write PHP code, and Laravel generates the appropriate SQL for your database.
+
+3. **Consistency Across Environments**:
+    - Migrations ensure that development, staging, and production environments have the same database structure.
+
+---
+
+### **How to Use Migrations**
+
+#### 1. **Creating Migrations**
+
+-   Use the Artisan command to create a migration file:
+
+```bash
+php artisan make:migration create_users_table
+```
+
+-   This generates a file in the `database/migrations` directory with a timestamped name (e.g., `2024_11_23_000000_create_users_table.php`).
+
+#### 2. **Editing the Migration File**
+
+-   Inside the generated migration file, you define the schema for the table. For example:
+
+```php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateUsersTable extends Migration {
+    public function up() {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id(); // Auto-incrementing primary key
+            $table->string('name'); // String column
+            $table->string('email')->unique(); // Unique email column
+            $table->string('password');
+            $table->timestamps(); // Adds created_at and updated_at columns
+        });
+    }
+
+    public function down() {
+        Schema::dropIfExists('users'); // Rolls back the migration
+    }
+}
+```
+
+#### 3. **Running Migrations**
+
+-   To apply the migrations and update the database schema:
+
+```bash
+php artisan migrate
+```
+
+-   Laravel executes the `up()` method of each migration that hasn't been run yet.
+
+#### 4. **Rolling Back Migrations**
+
+-   To undo the last batch of migrations:
+
+```bash
+php artisan migrate:rollback
+```
+
+-   Laravel executes the `down()` method of each migration in the last batch.
+
+-   To rollback all migrations:
+
+```bash
+php artisan migrate:reset
+```
+
+#### 5. **Refreshing Migrations**
+
+-   To reset and re-run all migrations (useful during development):
+
+```bash
+php artisan migrate:refresh
+```
+
+-   This is equivalent to rolling back all migrations and running them again.
+
+#### 6. **Seeding Data with Migrations**
+
+-   Migrations can work with seeders to populate tables with dummy or default data. For example:
+
+```bash
+php artisan migrate --seed
+```
+
+---
+
+### **Key Methods in Migrations**
+
+-   **Schema Builder**:
+    -   Laravel provides a `Schema` facade for managing tables.
+-   **Common Table Column Methods**:
+
+    ```php
+    $table->string('name');         // VARCHAR
+    $table->integer('age');         // INTEGER
+    $table->boolean('is_active');   // BOOLEAN
+    $table->timestamp('created_at');// TIMESTAMP
+    $table->text('description');    // TEXT
+    ```
+
+-   **Special Column Types**:
+
+    ```php
+    $table->id();                  // Auto-increment primary key
+    $table->timestamps();          // created_at and updated_at
+    $table->softDeletes();         // deleted_at for soft deletes
+    $table->foreignId('user_id')   // Foreign key column
+         ->constrained()           // Adds foreign key constraint
+         ->onDelete('cascade');    // Cascade delete
+    ```
+
+-   **Indexes**:
+    ```php
+    $table->unique('email');       // Unique index
+    $table->index('name');         // Simple index
+    $table->foreign('user_id')     // Foreign key
+          ->references('id')
+          ->on('users')
+          ->onDelete('cascade');
+    ```
+
+---
+
+### **Example: Creating a Table**
+
+-   Here’s a complete example for a `posts` table:
+
+```bash
+php artisan make:migration create_posts_table
+```
+
+Migration File:
+
+```php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePostsTable extends Migration {
+    public function up() {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title'); // Title of the post
+            $table->text('content'); // Content of the post
+            $table->foreignId('user_id') // Foreign key to users table
+                  ->constrained()
+                  ->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    public function down() {
+        Schema::dropIfExists('posts');
+    }
+}
+```
+
+Run the migration:
+
+```bash
+php artisan migrate
+```
+
+-   This creates the `posts` table in your database with the specified schema.
+
+---
+
+### **Best Practices**
+
+1. **Always Test Your Migrations**:
+    - Before deploying, ensure migrations run successfully in a test environment.
+2. **Use Descriptive Names**:
+
+    - Migration names like `create_users_table` or `add_status_column_to_orders_table` make it clear what each migration does.
+
+3. **Avoid Editing Migrations That Are Already Run**:
+
+    - Instead, create a new migration to modify the database (e.g., adding a column).
+
+4. **Use `down()` for Safe Rollbacks**:
+
+    - Always define a `down()` method to reverse changes safely.
+
+5. **Run Migrations in Deployment Pipelines**:
+    - Ensure your deployment process runs `php artisan migrate` to keep the database schema updated.
+
+-   Migrations are a core feature in Laravel that simplify database management, provide a clear history of changes, and make collaboration seamless. By using migrations, you maintain clean, consistent, and version-controlled database schemas across all environments.
