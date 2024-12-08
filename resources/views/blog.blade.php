@@ -7,5 +7,5 @@
     <p class="my-8 text-sm">
         {{ $blog['content'] }}
     </p>
-    <span class="text-gray-400"><strong class="text-gray-700">Author:</strong> {{ $blog['author'] }}</span>
+    <span class="text-gray-400"><strong class="text-gray-700">Author:</strong> {{ $blog['author']->name }}</span>
 </x-layout>
