@@ -6,7 +6,7 @@
         @foreach ($blogs as $blog)
             <li class="leading-2">
                 <a href="/blogs/{{ $blog['id'] }}">
-                    <strong>{{ $blog['title'] }}</strong> - Written by: {{ $blog['author'] }}
+                    <strong>{{ $blog['title'] }}</strong> - Written by: {{ $blog['user_id'] }}
                 </a>
             </li>
         @endforeach
