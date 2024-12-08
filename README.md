@@ -1,17 +1,5 @@
 # **Learn Laravel**
 
-### **Installations and Documentation**
-
-For a complete guide on installation, visit: [Laravel Official Documentation](https://laravel.com/docs/11.x/installation).
-
-### **Creating a New Laravel Project**
-
-To create a new Laravel project, use the following command:
-
-```bash
-laravel new project-name
-```
-
 > # PHP & LARAVEL TIPS
 
 -   **dd function =>** means dump and die, dumps the data in the browser and then kills the execution.
@@ -39,6 +27,18 @@ dd("DOJ")
     ```php
     $post = ARR::first($blogs, fn($blog)=>$blog['id'] == $id);
     ```
+
+### **Installations and Documentation**
+
+For a complete guide on installation, visit: [Laravel Official Documentation](https://laravel.com/docs/11.x/installation).
+
+### **Creating a New Laravel Project**
+
+To create a new Laravel project, use the following command:
+
+```bash
+laravel new project-name
+```
 
 # **Database Connection**
 
@@ -79,11 +79,139 @@ If SQLite is not installed, use the following command to install it:
 sudo apt-get install php-sqlite3
 ```
 
+# Artisan in Laravel
+
+-   Artisan is Laravel's built-in **command-line interface (CLI)** that helps developers streamline and automate repetitive tasks in the development process.
+-   It provides a wide range of commands to simplify tasks like file generation, database migrations, caching, and more.
+
+---
+
+### **Key Features of Artisan**
+
+1. **Task Automation**: Automatically generates files like controllers, models, and migrations.
+2. **Database Management**: Executes migrations, rolls back changes, and seeds databases.
+3. **Application Maintenance**: Clears caches, compiles assets, and manages configurations.
+4. **Custom Commands**: Developers can create custom commands for specific project needs.
+
+---
+
+### **How to Use Artisan Help**
+
+To access help for Artisan commands:
+
+-   List all available commands:
+
+    ```bash
+    php artisan
+    ```
+
+    -   This shows a categorized list of all Artisan commands.
+
+-   View details of a specific command:
+    ```bash
+    php artisan help [command]
+    ```
+    For example:
+    ```bash
+    php artisan help make:controller
+    ```
+    Displays usage, arguments, and options for the `make:controller` command.
+
+---
+
+### **Common Artisan Commands**
+
+#### **General Commands**
+
+-   Start a development server:
+
+    ```bash
+    php artisan serve
+    ```
+
+    -   By default, this starts a server at `http://localhost:8000`.
+
+-   Display Laravel version:
+    ```bash
+    php artisan --version
+    ```
+
+#### **File Generation**
+
+-   Create a controller:
+    ```bash
+    php artisan make:controller ExampleController
+    ```
+-   Create a model:
+    ```bash
+    php artisan make:model Example
+    ```
+-   Create a migration:
+    ```bash
+    php artisan make:migration create_examples_table
+    ```
+
+#### **Database Commands**
+
 -   You can view information about your database connection by running the command:
 
 ```bash
 php artisan db:show
 ```
+
+-   Run migrations:
+    ```bash
+    php artisan migrate
+    ```
+-   Rollback the last migration:
+    ```bash
+    php artisan migrate:rollback
+    ```
+-   Seed the database:
+    ```bash
+    php artisan db:seed
+    ```
+
+#### **Maintenance Commands**
+
+-   Clear application cache:
+    ```bash
+    php artisan cache:clear
+    ```
+-   Clear route cache:
+    ```bash
+    php artisan route:clear
+    ```
+-   Optimize the application:
+    ```bash
+    php artisan optimize
+    ```
+
+#### **Testing and Debugging**
+
+-   Enter the Tinker shell to interact with your application:
+    ```bash
+    php artisan tinker
+    ```
+
+#### **Custom Commands**
+
+-   You can create a custom command with:
+
+```bash
+php artisan make:command CustomCommand
+```
+
+---
+
+### **Benefits of Artisan**
+
+-   **Efficiency**: Reduces time spent on manual tasks.
+-   **Consistency**: Ensures uniform structure and coding standards.
+-   **Powerful Debugging**: Tools like Tinker allow quick testing and debugging.
+-   **Extensibility**: Supports custom commands tailored to specific project requirements.
+
+-   Artisan is an indispensable tool for Laravel development, enhancing productivity and simplifying workflow.
 
 # **Routes**
 
@@ -639,6 +767,10 @@ class UserController {
 # Models
 
 -   In Laravel, a **model** is a representation of a table in the database. It acts as the primary way to interact with data using the **Eloquent ORM (Object-Relational Mapping)**.
+
+#### Eloquent ORM (Object-Relational Mapping)
+
+-   An ORM maps an object in your database(eg table row) to an object in your code(php code)
 
 #### Key Features of Models:
 
