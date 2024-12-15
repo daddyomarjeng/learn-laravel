@@ -12,7 +12,8 @@ Route::get('/', function () {
     return view('home');
 });
 Route::get('/blogs', function () {
-    $blogs = Post::all();
+    // $blogs = Post::all();
+    $blogs = Post::with("author")->with("tags")->get();
     return view('blogs', ['blogs'=>$blogs]);
 });
 Route::get('/blogs/{id}', function ($id) {
