@@ -15,4 +15,6 @@
             </li>
         @endforeach
     </ul>
+
+    {{ $blogs->links() }}
 </x-layout>

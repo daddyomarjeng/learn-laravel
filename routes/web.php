@@ -13,7 +13,10 @@ Route::get('/', function () {
 });
 Route::get('/blogs', function () {
     // $blogs = Post::all();
-    $blogs = Post::with("author")->with("tags")->get();
+    // $blogs = Post::with("author")->with("tags")->get();
+    // $blogs = Post::with("author")->with("tags")->cursorPaginate(5);
+    // $blogs = Post::with("author")->with("tags")->paginate(5);
+    $blogs = Post::with("author")->with("tags")->simplePaginate(5);
     return view('blogs', ['blogs'=>$blogs]);
 });
 Route::get('/blogs/{id}', function ($id) {

@@ -1950,3 +1950,173 @@ $posts = Post::with('author')->get();
 ---
 
 -   By enabling `preventLazyLoading()`, you can enforce better practices and optimize your Laravel application's performance.
+
+# Pagination in Laravel: A Comprehensive Guide
+
+-   Pagination in Laravel provides a simple and elegant way to handle large datasets by splitting them into smaller, more manageable chunks. Laravel’s paginator is highly customizable, with support for different CSS frameworks and the ability to define custom views.
+
+---
+
+### **Basic Pagination**
+
+-   Laravel provides two main methods for pagination:
+
+1. **`paginate`**:
+
+    - Retrieves a specified number of records per page.
+    - Returns an instance of `LengthAwarePaginator`.
+
+    ```php
+    $blogs = Post::paginate(10);
+    return view('blogs', ['blogs' => $blogs]);
+    ```
+
+2. **`simplePaginate`**:
+
+    - Optimized for performance but lacks page numbers.
+    - Returns an instance of `Paginator`.
+
+    ```php
+    $blogs = Post::simplePaginate(10);
+    return view('blogs', ['blogs' => $blogs]);
+    ```
+
+3. **`cursorPaginate`**:
+
+    - Optimized for performance and lacks page numbers just like the simplePaginate but **it is the most performant option** especially if you are dealing with a large dataset.
+    - It has a downside though, the url for next page is some randomly generated string and user cannot manually change the page from the url.
+    - Returns an instance of `Paginator`.
+
+    ```php
+    $blogs = Post::with("author")->with("tags")->cursorPaginate(10);
+    return view('blogs', ['blogs' => $blogs]);
+    ```
+
+-   In your Blade file, use the `links()` method to render the pagination links:
+
+```php
+<ul>
+    @foreach ($blogs as $blog)
+        <li>
+            <a href="/blogs/{{ $blog->id }}">{{ $blog->title }}</a>
+        </li>
+    @endforeach
+</ul>
+
+{{ $blogs->links() }}
+```
+
+---
+
+### **Customizing Pagination UI**
+
+#### **1. Using the Default Tailwind CSS View**
+
+-   Laravel assumes **Tailwind CSS** is the default CSS framework for pagination. The `links()` method generates Tailwind-styled pagination out of the box.
+
+Example:
+
+```php
+{{ $blogs->links() }}
+```
+
+This uses the `resources/views/vendor/pagination/tailwind.blade.php` view.
+
+#### **2. Switching to Bootstrap or Custom CSS Frameworks**
+
+-   If you are using **Bootstrap** or another framework, you can change the pagination view globally or locally.
+
+##### **Global Customization in \*\***`AppServiceProvider`\*\*
+
+-   To switch globally to Bootstrap:
+
+1. Open `App\Providers\AppServiceProvider.php`.
+2. Add the following in the `boot` method:
+
+    ```php
+    use Illuminate\Pagination\Paginator;
+
+    public function boot()
+    {
+        Paginator::useBootstrap();
+    }
+    ```
+
+To switch to a custom view:
+
+```php
+Paginator::defaultView('custom-pagination-view');
+```
+
+##### **Local Customization for Specific Paginations**
+
+-   You can specify a custom view directly in the Blade file:
+
+```php
+{{ $blogs->links('vendor.pagination.bootstrap') }} <!-- Use Bootstrap view -->
+{{ $blogs->links('custom-pagination-view') }} <!-- Use a custom view -->
+```
+
+---
+
+### **Publishing Pagination Views for Customization**
+
+To modify the default pagination views:
+
+1. Run the following Artisan command:
+
+    ```bash
+    php artisan vendor:publish --tag=laravel-pagination
+    ```
+
+2. This copies the pagination views to `resources/views/vendor/pagination/`.
+
+3. You can edit these views (e.g., `bootstrap.blade.php` or `tailwind.blade.php`) to suit your application.
+
+---
+
+### **Examples with \*\***`blogs.blade.php`\*\*
+
+-   Here’s how you can implement pagination in a Blade file:
+
+```php
+<x-layout>
+    <x-slot:heading>
+        Blogs Page
+    </x-slot:heading>
+
+    <ul>
+        @foreach ($blogs as $blog)
+            <li class="leading-2">
+                <a href="/blogs/{{ $blog->id }}">
+                    <strong>{{ $blog->title }}</strong> - Written by: {{ $blog->author->name }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+
+    <!-- Default Tailwind pagination -->
+    {{ $blogs->links() }}
+
+    <!-- Custom Bootstrap pagination -->
+    {{ $blogs->links('vendor.pagination.bootstrap') }}
+</x-layout>
+```
+
+---
+
+### **Switching Back to Tailwind Pagination**
+
+-   If you want to revert to Tailwind CSS, use:
+
+```php
+Paginator::useTailwind();
+```
+
+-   This is Laravel’s default pagination style.
+
+---
+
+### **Conclusion**
+
+-   Laravel’s pagination system is highly flexible, supporting Tailwind CSS by default while allowing seamless integration with other frameworks like Bootstrap or custom views. Additionally, using eager loading in pagination ensures optimal performance by avoiding the N+1 problem. Customize your pagination views to match your application’s design and provide a polished user experience.
