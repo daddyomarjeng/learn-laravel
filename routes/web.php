@@ -13,11 +13,13 @@ Route::get('/', function () {
     return view('home');
 });
 
+// create
 Route::get('/blogs/create', function () {
 
     return view('blogs.create');
 });
 
+// get all
 Route::get('/blogs', function () {
     // $blogs = Post::all();
     // $blogs = Post::with("author")->with("tags")->get();
@@ -27,6 +29,8 @@ Route::get('/blogs', function () {
     return view('blogs.index', ['blogs'=>$blogs]);
 });
 
+
+// get single
 Route::get('/blogs/{id}', function ($id) {
 
 //    $post =  Arr::first($blogs, function($blog) use($id) {
@@ -40,6 +44,7 @@ Route::get('/blogs/{id}', function ($id) {
     return view('blogs.show', ['blog'=>$post]);
 });
 
+// create
 Route::post('/blogs', function (Request $request) {
     $validated = $request->validate([
         'title' => ['required', 'max:255', 'min:4'],
@@ -47,6 +52,34 @@ Route::post('/blogs', function (Request $request) {
     ]);
 
     Post::create([...$validated, "user_id"=>1]);
+
+    return redirect('/blogs');
+});
+
+// show edit page
+Route::get('/blogs/{id}/edit', function ($id) {
+
+    $post = Post::findOrFail($id); // Retrieve the blog by ID
+    return view('blogs.edit', ['blog'=>$post]);
+});
+
+// edit
+Route::put('/blogs/{id}', function (Request $request, $id) {
+    $validated = $request->validate([
+        'title' => ['required', 'max:255', 'min:4'],
+        'content' => 'required|min:5',
+    ]);
+
+    $blog = Post::findOrFail($id);
+    $blog->update($validated);
+
+    return redirect('/blogs/' .  $blog->id);
+});
+
+// delete
+Route::delete('/blogs/{id}', function ($id) {
+    $blog = Post::findOrFail($id);
+    $blog->delete();
 
     return redirect('/blogs');
 });

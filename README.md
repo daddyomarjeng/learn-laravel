@@ -2469,7 +2469,7 @@ Route::post('/blogs', function (Request $request) {
 
 #### **Form View**:
 
-```html
+```php
 <x-layout>
     <x-slot:heading> Create Blog Post </x-slot:heading>
     <form method="POST" action="/blogs">
@@ -2524,3 +2524,224 @@ Route::post('/blogs', function (Request $request) {
     - The user is redirected to the desired page (e.g., a blog list or success page).
 
 -   This setup ensures secure, user-friendly form handling in your Laravel application.
+
+# Editing, Updating, and Deleting Resources in Laravel
+
+-   Laravel provides intuitive methods for editing, updating, and deleting resources using RESTful conventions. These operations are crucial for maintaining and managing application data.
+
+---
+
+### **1. Editing Resources**
+
+-   When editing a resource, you typically display the resource's existing data in a form, allowing the user to make changes.
+
+#### **Edit Form**
+
+-   The edit form is similar to the creation form but pre-filled with the current values of the resource. The user modifies the fields and submits the form.
+
+**Key Points**:
+
+-   Use a `GET` route for rendering the edit form.
+-   Pre-fill the form fields using the resource's current data.
+
+#### **Example Route for Editing**:
+
+```php
+Route::get('/blogs/{id}/edit', function ($id) {
+    $blog = Post::findOrFail($id); // Retrieve the blog by ID
+    return view('edit', ['blog' => $blog]);
+});
+```
+
+#### **Pre-Filling the Form**:
+
+-   In the Blade template:
+
+```php
+<input type="text" name="title" value="{{ old('title', $blog->title) }}">
+<textarea name="content">{{ old('content', $blog->content) }}</textarea>
+```
+
+Here:
+
+-   `old()` ensures the user’s input is retained after validation errors.
+-   `old('field', $blog->field)` provides a fallback to the current value in case of no user input.
+
+---
+
+### **2. Updating Resources**
+
+-   Updating involves receiving the modified data from the edit form and saving it to the database.
+
+#### **Update Route**:
+
+-   Laravel uses a `PUT` or `PATCH` request for updating:
+
+```php
+Route::put('/blogs/{id}', function (Request $request, $id) {
+    $validated = $request->validate([
+        'title' => ['required', 'max:255', 'min:4'],
+        'content' => 'required|min:5',
+    ]);
+
+    $blog = Post::findOrFail($id);
+    $blog->update($validated);
+
+    return redirect('/blogs');
+});
+```
+
+#### **HTML Form for Updating**:
+
+```php
+<form method="POST" action="/blogs/{{ $blog->id }}">
+    @csrf
+    @method('PUT') <!-- Spoofs a PUT request -->
+    <input type="text" name="title" value="{{ old('title', $blog->title) }}">
+    <textarea name="content">{{ old('content', $blog->content) }}</textarea>
+    <button type="submit">Save Changes</button>
+</form>
+```
+
+-   `@method('PUT')` is required because HTML forms do not support `PUT` or `PATCH`.
+-   `Post::findOrFail($id)` ensures the resource exists or throws a 404 error.
+
+---
+
+### **3. Deleting Resources**
+
+-   Deleting involves removing a resource from the database. This operation uses a `DELETE` request.
+
+#### **Delete Route**:
+
+```php
+Route::delete('/blogs/{id}', function ($id) {
+    $blog = Post::findOrFail($id);
+    $blog->delete();
+
+    return redirect('/blogs');
+});
+```
+
+#### **HTML Form for Deleting**:
+
+```php
+<form method="POST" action="/blogs/{{ $blog->id }}">
+    @csrf
+    @method('DELETE') <!-- Spoofs a DELETE request -->
+    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+</form>
+```
+
+#### **Delete Workflow**:
+
+1. User clicks the delete button.
+2. A confirmation prompt appears (`onclick="return confirm()"`).
+3. If confirmed, the `DELETE` request is sent to the server.
+4. Laravel deletes the resource and redirects the user.
+
+---
+
+### **4. Combining Editing, Updating, and Deleting**
+
+-   Here’s how these operations work together in a resourceful controller setup.
+
+#### **Controller**:
+
+```php
+use App\Models\Post;
+use Illuminate\Http\Request;
+
+// Display the edit form
+public function edit($id) {
+    $blog = Post::findOrFail($id);
+    return view('edit', compact('blog'));
+}
+
+// Update the resource
+public function update(Request $request, $id) {
+    $validated = $request->validate([
+        'title' => ['required', 'max:255', 'min:4'],
+        'content' => 'required|min:5',
+    ]);
+
+    $blog = Post::findOrFail($id);
+    $blog->update($validated);
+
+    return redirect('/blogs');
+}
+
+// Delete the resource
+public function destroy($id) {
+    $blog = Post::findOrFail($id);
+    $blog->delete();
+
+    return redirect('/blogs');
+}
+```
+
+#### **Routes**:
+
+```php
+Route::resource('blogs', BlogController::class);
+```
+
+-   The `Route::resource` method automatically defines all RESTful routes, including:
+    -   `GET /blogs/{id}/edit` for editing.
+    -   `PUT /blogs/{id}` for updating.
+    -   `DELETE /blogs/{id}` for deleting.
+
+---
+
+### **5. Example Workflow**
+
+#### **Edit Page**:
+
+```php
+<x-layout>
+    <x-slot:heading>
+        Edit Blog Post
+    </x-slot:heading>
+    <form method="POST" action="/blogs/{{ $blog->id }}">
+        @csrf
+        @method('PUT')
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" value="{{ old('title', $blog->title) }}">
+            @error('title')
+                <p class="text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+        <div>
+            <label for="content">Content</label>
+            <textarea name="content">{{ old('content', $blog->content) }}</textarea>
+            @error('content')
+                <p class="text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+        <button type="submit">Save Changes</button>
+    </form>
+</x-layout>
+```
+
+#### **Delete Button**:
+
+```html
+<form method="POST" action="/blogs/{{ $blog->id }}">
+    @csrf @method('DELETE')
+    <button type="submit" onclick="return confirm('Are you sure?')">
+        Delete
+    </button>
+</form>
+```
+
+---
+
+### **6. Summary**
+
+-   **Editing**: Use `GET` to retrieve the resource and render a pre-filled form.
+-   **Updating**: Use `PUT` or `PATCH` to validate and save the modified data.
+-   **Deleting**: Use `DELETE` to remove the resource securely.
+-   Combine all these with resource controllers for cleaner and more maintainable code.
+
+-   This approach aligns with Laravel’s RESTful principles, making the application consistent and scalable.
