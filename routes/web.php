@@ -7,6 +7,55 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 
+// Blogs Routes
+Route::resource("/blogs", BlogController::class);
+// home
+Route::view('/', 'home');
+// contact
+Route::view('/contact', 'contact');
+
+
+
+// // Blogs Routes
+// Route::controller(BlogController::class)->group(function(){
+//     Route::get("/blogs","index");
+//     Route::get('/blogs/create', "create");
+//     Route::get('/blogs/{post}',  "show");
+//     Route::post('/blogs',  "store" );
+//     Route::get('/blogs/{post}/edit',  "edit");
+//     Route::put('/blogs/{post}',  "update");
+//     Route::delete('/blogs/{post}',"destroy");
+// });
+
+
+// // home
+// Route::view('/', 'home');
+
+// // contact
+// Route::view('/contact', 'contact');
+
+// // Blogs Routes
+// // get all
+// Route::get("/blogs", [BlogController::class, "index"]);
+
+// // create
+// Route::get('/blogs/create', [BlogController::class, "create"]);
+
+// // get single
+// Route::get('/blogs/{post}', [BlogController::class, "show"]);
+
+// // store
+// Route::post('/blogs', [BlogController::class, "store"] );
+
+// // show edit page
+// Route::get('/blogs/{post}/edit', [BlogController::class, "edit"]);
+
+// // update
+// Route::put('/blogs/{post}', [BlogController::class, "update"]);
+
+// // delete
+// Route::delete('/blogs/{post}', [BlogController::class, "destroy"]);
+
 
 // Route::get('/', function () {
 
@@ -89,32 +138,3 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/contact', function () {
 //     return view('contact');
 // });
-
-
-// home
-Route::view('/', 'home');
-
-// contact
-Route::view('/contact', 'contact');
-
-// Blogs Routes
-// get all
-Route::get("/blogs", [BlogController::class, "index"]);
-
-// create
-Route::get('/blogs/create', [BlogController::class, "create"]);
-
-// get single
-Route::get('/blogs/{post}', [BlogController::class, "show"]);
-
-// store
-Route::post('/blogs', [BlogController::class, "store"] );
-
-// show edit page
-Route::get('/blogs/{post}/edit', [BlogController::class, "edit"]);
-
-// update
-Route::put('/blogs/{post}', [BlogController::class, "update"]);
-
-// delete
-Route::delete('/blogs/{post}', [BlogController::class, "destroy"]);

@@ -14,8 +14,9 @@ class BlogController extends Controller
     public function create(){
         return view('blogs.create');
     }
-    public function show(Post $post){
-    return view('blogs.show', ['blog'=>$post]);
+    public function show(Post $blog){
+        // dd($blog);
+    return view('blogs.show', ['blog'=>$blog]);
     }
     public function store(Request $request){
         $validated = $request->validate([
@@ -28,21 +29,21 @@ class BlogController extends Controller
         return redirect('/blogs');
 
     }
-    public function edit(Post $post){
-        return view('blogs.edit', ['blog'=>$post]);
+    public function edit(Post $blog){
+        return view('blogs.edit', ['blog'=>$blog]);
     }
-    public function update(Request $request, Post $post){
+    public function update(Request $request, Post $blog){
         $validated = $request->validate([
             'title' => ['required', 'max:255', 'min:4'],
             'content' => 'required|min:5',
         ]);
 
-        $post->update($validated);
+        $blog->update($validated);
 
-        return redirect('/blogs/' .  $post->id);
+        return redirect('/blogs/' .  $blog->id);
     }
-    public function destroy(Post $post){
-        $post->delete();
+    public function destroy(Post $blog){
+        $blog->delete();
         return redirect('/blogs');
     }
 }
