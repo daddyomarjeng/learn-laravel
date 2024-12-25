@@ -92,14 +92,10 @@ use Illuminate\Support\Facades\Route;
 
 
 // home
-Route::get('/', function () {
-  return view('home');
-});
+Route::view('/', 'home');
 
 // contact
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::view('/contact', 'contact');
 
 // Blogs Routes
 // get all
