@@ -658,6 +658,77 @@ Route::get('/user/{id}', function ($id) {
 })->where('id', '[0-9]+'); // Only numeric IDs are allowed
 ```
 
+# **Route Views in Laravel**
+
+-   Route views in Laravel provide a simple way to return a static view directly from your routes without creating a controller. This approach is ideal for routes that only need to display a view without complex logic or data processing.
+
+---
+
+### **Defining a Route View**
+
+-   You can define a route that returns a view using the `Route::view` method. Here's an example:
+
+```php
+Route::view('/welcome', 'welcome');
+```
+
+-   In this example:
+
+    -   `/welcome` is the URL path.
+    -   `'welcome'` is the name of the Blade view (stored in the `resources/views` directory as `welcome.blade.php`).
+
+-   When a user visits `/welcome`, Laravel directly renders the `welcome.blade.php` file.
+
+---
+
+### **Passing Data to Views**
+
+-   You can also pass data to the view using the `Route::view` method by providing an associative array as the third argument:
+
+```php
+Route::view('/about', 'about', ['name' => 'Omar', 'role' => 'Engineer']);
+```
+
+-   In this example:
+    -   The `about` view will have access to `name` and `role` as variables.
+
+**`about.blade.php` Example**:
+
+```blade
+<h1>About Page</h1>
+<p>Name: {{ $name }}</p>
+<p>Role: {{ $role }}</p>
+```
+
+---
+
+### **When to Use Route Views**
+
+1. **Static Pages**: For pages like "About Us", "Contact", or "FAQ" that don’t require dynamic content.
+2. **Prototyping**: Quickly create a route for a view during initial development.
+3. **Minimal Logic**: If no controller logic or model interaction is required.
+
+---
+
+### **Benefits of Route Views**
+
+1. **Simplicity**: Reduces boilerplate by avoiding unnecessary controller creation.
+2. **Clarity**: Keeps routes concise for simple pages.
+3. **Quick Setup**: Perfect for prototyping or static content.
+
+---
+
+### **Limitations of Route Views**
+
+1. **No Logic Handling**: They can’t process complex logic or interact with models.
+2. **Limited Reusability**: For non-static or dynamic pages, controllers are more appropriate.
+
+---
+
+### **Best Practice**
+
+-   While `Route::view` is useful for simple pages, as your application grows, it's better to use controllers to handle business logic and ensure scalability.
+
 # Autoload
 
 -   In Laravel, **autoload** refers to the mechanism that allows PHP classes, interfaces, or traits to be loaded automatically when they are needed, without requiring manual `include` or `require` statements.
