@@ -7,12 +7,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 
+Route::view('/', 'home');
+Route::view('/contact', 'contact');
 // Blogs Routes
 Route::resource("/blogs", BlogController::class);
-// home
-Route::view('/', 'home');
-// contact
-Route::view('/contact', 'contact');
 
 
 
