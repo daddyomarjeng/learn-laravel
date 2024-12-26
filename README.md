@@ -2,13 +2,13 @@
 
 > # PHP & LARAVEL TIPS
 
--   **dd function =>** means dump and die, dumps the data in the browser and then kills the execution.
+- **dd function =>** means dump and die, dumps the data in the browser and then kills the execution.
 
 ```php
 dd("DOJ")
 ```
 
--   **Laravel ARR class=>** is a laravel helper class that takes in an array and has a lot of other helper methods to help work with arrays. Eg.:
+- **Laravel ARR class=>** is a laravel helper class that takes in an array and has a lot of other helper methods to help work with arrays. Eg.:
 
 ```php
    $post =  Arr::first($blogs, function($blog) {
@@ -16,17 +16,17 @@ dd("DOJ")
     });
 ```
 
--   **Accessing outside data/variables in a closure=>** example if we want to access a variable in a function but the variable is declared outside the function. We have two ways to access it:
-    -   **1. The 'use' function=>** eg use($id)
-    ```php
-      $post =  Arr::first($blogs, function($blog) use($id) {
-        return $blog['id'] == $id;
-    });
-    ```
-    -   **2. The 'fn' or 'arrow function'**
-    ```php
-    $post = ARR::first($blogs, fn($blog)=>$blog['id'] == $id);
-    ```
+- **Accessing outside data/variables in a closure=>** example if we want to access a variable in a function but the variable is declared outside the function. We have two ways to access it:
+  - **1. The 'use' function=>** eg use($id)
+  ```php
+    $post =  Arr::first($blogs, function($blog) use($id) {
+      return $blog['id'] == $id;
+  });
+  ```
+  - **2. The 'fn' or 'arrow function'**
+  ```php
+  $post = ARR::first($blogs, fn($blog)=>$blog['id'] == $id);
+  ```
 
 ### **Installations and Documentation**
 
@@ -44,7 +44,7 @@ laravel new project-name
 
 ### **Setting Up Database Connection in `.env`**
 
--   You can configure your database connection in the `.env` file.
+- You can configure your database connection in the `.env` file.
 
 ### **Using SQLite**
 
@@ -54,9 +54,9 @@ If you prefer to use SQLite:
 2. Open the `.env` file and change the `DB_CONNECTION` value to `sqlite`.
 3. Comment out the `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` entries.
 4. Run the migration command:
-    ```bash
-    php artisan migrate
-    ```
+   ```bash
+   php artisan migrate
+   ```
 5. Enjoy your SQLite setup.
 
 Example `.env` configuration for SQLite:
@@ -81,8 +81,8 @@ sudo apt-get install php-sqlite3
 
 # Artisan in Laravel
 
--   Artisan is Laravel's built-in **command-line interface (CLI)** that helps developers streamline and automate repetitive tasks in the development process.
--   It provides a wide range of commands to simplify tasks like file generation, database migrations, caching, and more.
+- Artisan is Laravel's built-in **command-line interface (CLI)** that helps developers streamline and automate repetitive tasks in the development process.
+- It provides a wide range of commands to simplify tasks like file generation, database migrations, caching, and more.
 
 ---
 
@@ -99,23 +99,23 @@ sudo apt-get install php-sqlite3
 
 To access help for Artisan commands:
 
--   List all available commands:
+- List all available commands:
 
-    ```bash
-    php artisan
-    ```
+  ```bash
+  php artisan
+  ```
 
-    -   This shows a categorized list of all Artisan commands.
+  - This shows a categorized list of all Artisan commands.
 
--   View details of a specific command:
-    ```bash
-    php artisan help [command]
-    ```
-    For example:
-    ```bash
-    php artisan help make:controller
-    ```
-    Displays usage, arguments, and options for the `make:controller` command.
+- View details of a specific command:
+  ```bash
+  php artisan help [command]
+  ```
+  For example:
+  ```bash
+  php artisan help make:controller
+  ```
+  Displays usage, arguments, and options for the `make:controller` command.
 
 ---
 
@@ -123,80 +123,80 @@ To access help for Artisan commands:
 
 #### **General Commands**
 
--   Start a development server:
+- Start a development server:
 
-    ```bash
-    php artisan serve
-    ```
+  ```bash
+  php artisan serve
+  ```
 
-    -   By default, this starts a server at `http://localhost:8000`.
+  - By default, this starts a server at `http://localhost:8000`.
 
--   Display Laravel version:
-    ```bash
-    php artisan --version
-    ```
+- Display Laravel version:
+  ```bash
+  php artisan --version
+  ```
 
 #### **File Generation**
 
--   Create a controller:
-    ```bash
-    php artisan make:controller ExampleController
-    ```
--   Create a model:
-    ```bash
-    php artisan make:model Example
-    ```
--   Create a migration:
-    ```bash
-    php artisan make:migration create_examples_table
-    ```
+- Create a controller:
+  ```bash
+  php artisan make:controller ExampleController
+  ```
+- Create a model:
+  ```bash
+  php artisan make:model Example
+  ```
+- Create a migration:
+  ```bash
+  php artisan make:migration create_examples_table
+  ```
 
 #### **Database Commands**
 
--   You can view information about your database connection by running the command:
+- You can view information about your database connection by running the command:
 
 ```bash
 php artisan db:show
 ```
 
--   Run migrations:
-    ```bash
-    php artisan migrate
-    ```
--   Rollback the last migration:
-    ```bash
-    php artisan migrate:rollback
-    ```
--   Seed the database:
-    ```bash
-    php artisan db:seed
-    ```
+- Run migrations:
+  ```bash
+  php artisan migrate
+  ```
+- Rollback the last migration:
+  ```bash
+  php artisan migrate:rollback
+  ```
+- Seed the database:
+  ```bash
+  php artisan db:seed
+  ```
 
 #### **Maintenance Commands**
 
--   Clear application cache:
-    ```bash
-    php artisan cache:clear
-    ```
--   Clear route cache:
-    ```bash
-    php artisan route:clear
-    ```
--   Optimize the application:
-    ```bash
-    php artisan optimize
-    ```
+- Clear application cache:
+  ```bash
+  php artisan cache:clear
+  ```
+- Clear route cache:
+  ```bash
+  php artisan route:clear
+  ```
+- Optimize the application:
+  ```bash
+  php artisan optimize
+  ```
 
 #### **Testing and Debugging**
 
--   Enter the Tinker shell to interact with your application:
-    ```bash
-    php artisan tinker
-    ```
+- Enter the Tinker shell to interact with your application:
+  ```bash
+  php artisan tinker
+  ```
 
 #### **Custom Commands**
 
--   You can create a custom command with:
+- You can create a custom command with:
 
 ```bash
 php artisan make:command CustomCommand
@@ -206,57 +206,57 @@ php artisan make:command CustomCommand
 
 ### **Benefits of Artisan**
 
--   **Efficiency**: Reduces time spent on manual tasks.
--   **Consistency**: Ensures uniform structure and coding standards.
--   **Powerful Debugging**: Tools like Tinker allow quick testing and debugging.
--   **Extensibility**: Supports custom commands tailored to specific project requirements.
+- **Efficiency**: Reduces time spent on manual tasks.
+- **Consistency**: Ensures uniform structure and coding standards.
+- **Powerful Debugging**: Tools like Tinker allow quick testing and debugging.
+- **Extensibility**: Supports custom commands tailored to specific project requirements.
 
--   Artisan is an indispensable tool for Laravel development, enhancing productivity and simplifying workflow.
+- Artisan is an indispensable tool for Laravel development, enhancing productivity and simplifying workflow.
 
 # Debug
 
--   There is a package that can make debuging easier in laravel called **laravel debug bar**, we can install it using composer
--   install uisng command:
+- There is a package that can make debuging easier in laravel called **laravel debug bar**, we can install it using composer
+- install uisng command:
 
 ```bash
 composer require barryvdh/laravel-debugbar --dev
 ```
 
--   Note that it sometimes slows the application and laravel automatically enables it as far as the **APP_DEBUG** in the env is set to true
--   [Read More and Download from here](https://github.com/barryvdh/laravel-debugbar)
+- Note that it sometimes slows the application and laravel automatically enables it as far as the **APP_DEBUG** in the env is set to true
+- [Read More and Download from here](https://github.com/barryvdh/laravel-debugbar)
 
 # Autoload
 
--   In Laravel, **autoload** refers to the mechanism that allows PHP classes, interfaces, or traits to be loaded automatically when they are needed, without requiring manual `include` or `require` statements.
+- In Laravel, **autoload** refers to the mechanism that allows PHP classes, interfaces, or traits to be loaded automatically when they are needed, without requiring manual `include` or `require` statements.
 
 #### How It Works:
 
 1. **Composer Autoloading**:
 
-    - Laravel uses [Composer](https://getcomposer.org/), a dependency manager for PHP, to handle autoloading.
-    - Composer generates a file (`vendor/autoload.php`) that automatically includes all classes based on their namespaces and file structure.
-    - Laravel uses the **PSR-4 autoloading standard**, which maps namespaces directly to directory structures.
+   - Laravel uses [Composer](https://getcomposer.org/), a dependency manager for PHP, to handle autoloading.
+   - Composer generates a file (`vendor/autoload.php`) that automatically includes all classes based on their namespaces and file structure.
+   - Laravel uses the **PSR-4 autoloading standard**, which maps namespaces directly to directory structures.
 
 2. **Defining Autoload in `composer.json`**:
 
-    - The `autoload` section in `composer.json` specifies the mapping:
-        ```json
-        "autoload": {
-            "psr-4": {
-                "App\\": "app/"
-            }
-        }
-        ```
-    - Here, the namespace `App\` maps to the `app/` directory, so any class in the `App` namespace will be located in the `app` folder.
+   - The `autoload` section in `composer.json` specifies the mapping:
+     ```json
+     "autoload": {
+         "psr-4": {
+             "App\\": "app/"
+         }
+     }
+     ```
+   - Here, the namespace `App\` maps to the `app/` directory, so any class in the `App` namespace will be located in the `app` folder.
 
 3. **Why Autoload?**:
-    - Reduces repetitive code by automatically resolving file locations.
-    - Keeps the application organized by aligning namespaces with directory structures.
-    - Enhances maintainability by removing manual file inclusions.
+   - Reduces repetitive code by automatically resolving file locations.
+   - Keeps the application organized by aligning namespaces with directory structures.
+   - Enhances maintainability by removing manual file inclusions.
 
 #### Example:
 
--   When you define a class in `app/Models/User.php` like:
+- When you define a class in `app/Models/User.php` like:
 
 ```php
 namespace App\Models;
@@ -266,7 +266,7 @@ class User {
 }
 ```
 
--   You can use it anywhere in your project with:
+- You can use it anywhere in your project with:
 
 ```php
 use App\Models\User;
@@ -274,20 +274,20 @@ use App\Models\User;
 $user = new User();
 ```
 
--   No manual `require` is needed because Laravel’s autoloader resolves the namespace and file path.
+- No manual `require` is needed because Laravel’s autoloader resolves the namespace and file path.
 
 # Namespace
 
--   In Laravel (and PHP), a **namespace** is a way to group related classes, interfaces, traits, or functions to avoid name collisions and improve code organization.
+- In Laravel (and PHP), a **namespace** is a way to group related classes, interfaces, traits, or functions to avoid name collisions and improve code organization.
 
 #### Why Use Namespaces?
 
 1. **Avoid Conflicts**:
-    - Multiple libraries or parts of the application might have classes with the same name (e.g., `User`). Namespaces prevent these conflicts.
+   - Multiple libraries or parts of the application might have classes with the same name (e.g., `User`). Namespaces prevent these conflicts.
 2. **Organize Code**:
-    - Namespaces help categorize classes logically (e.g., `App\Controllers`, `App\Models`).
+   - Namespaces help categorize classes logically (e.g., `App\Controllers`, `App\Models`).
 3. **Simplify Imports**:
-    - Instead of writing long paths repeatedly, you can use `use` statements to import and use classes.
+   - Instead of writing long paths repeatedly, you can use `use` statements to import and use classes.
 
 #### Laravel’s Default Namespace:
 
@@ -303,29 +303,29 @@ By default, all application classes are under the `App` namespace, as defined in
 
 1. **Declare a Namespace**:
 
-    - At the top of your file:
+   - At the top of your file:
 
-        ```php
-        namespace App\Models;
+     ```php
+     namespace App\Models;
 
-        class User {
-            // Code
-        }
-        ```
+     class User {
+         // Code
+     }
+     ```
 
 2. **Access Classes with Namespaces**:
 
-    - Use the full namespace:
-        ```php
-        $user = new \App\Models\User();
-        ```
-    - Or import it using `use`:
+   - Use the full namespace:
+     ```php
+     $user = new \App\Models\User();
+     ```
+   - Or import it using `use`:
 
-        ```php
-        use App\Models\User;
+     ```php
+     use App\Models\User;
 
-        $user = new User();
-        ```
+     $user = new User();
+     ```
 
 #### Example:
 
@@ -341,18 +341,18 @@ class UserController {
 }
 ```
 
--   Here, the `UserController` class is grouped under `App\Http\Controllers`, and it imports the `User` model from `App\Models`.
+- Here, the `UserController` class is grouped under `App\Http\Controllers`, and it imports the `User` model from `App\Models`.
 
 # Routes
 
--   Laravel routes define the paths that users can access in your application. They support web, API, and console routes.
--   You can list all routes using the command:
+- Laravel routes define the paths that users can access in your application. They support web, API, and console routes.
+- You can list all routes using the command:
 
 ```bash
 php artisan route:list
 ```
 
--   The above shows all routes including ones created by laravel, but if you only want to see the ones you have created you can run the following:
+- The above shows all routes including ones created by laravel, but if you only want to see the ones you have created you can run the following:
 
 ```bash
 php artisan route:list --except-vendor
@@ -360,7 +360,7 @@ php artisan route:list --except-vendor
 
 ### **Web Routes**
 
--   Web routes typically return views using the `view()` method. All views are stored in the `resources/views` directory.
+- Web routes typically return views using the `view()` method. All views are stored in the `resources/views` directory.
 
 #### **Example: Defining Web Routes**
 
@@ -382,7 +382,7 @@ Route::get('/contact', function () {
 
 ### **API Routing**
 
--   To enable API routing in your application, you can use the following command:
+- To enable API routing in your application, you can use the following command:
 
 ```bash
 php artisan install:api
@@ -390,7 +390,7 @@ php artisan install:api
 
 ### **Route Wildcards (Dynamic Routes)**
 
--   Dynamic routes allow you to capture parameters directly from the URL by using placeholders in curly braces `{}`.
+- Dynamic routes allow you to capture parameters directly from the URL by using placeholders in curly braces `{}`.
 
 #### **Example: Single Wildcard**
 
@@ -400,8 +400,8 @@ Route::get('/user/{id}', function ($id) {
 });
 ```
 
--   In this example, `{id}` is a placeholder that captures the dynamic value from the URL.
--   Accessing `/user/123` will return "User ID: 123".
+- In this example, `{id}` is a placeholder that captures the dynamic value from the URL.
+- Accessing `/user/123` will return "User ID: 123".
 
 #### **Example: Multiple Wildcards**
 
@@ -413,7 +413,7 @@ Route::get('/post/{postId}/comment/{commentId}', function ($postId, $commentId) 
 
 #### **Optional Wildcards**
 
--   Add a `?` to make a parameter optional, and provide a default value:
+- Add a `?` to make a parameter optional, and provide a default value:
 
 ```php
 Route::get('/user/{name?}', function ($name = 'Guest') {
@@ -423,7 +423,7 @@ Route::get('/user/{name?}', function ($name = 'Guest') {
 
 #### **Route Constraints**
 
--   You can restrict the values captured by a wildcard using the `where` method:
+- You can restrict the values captured by a wildcard using the `where` method:
 
 ```php
 Route::get('/user/{id}', function ($id) {
@@ -433,20 +433,20 @@ Route::get('/user/{id}', function ($id) {
 
 # Components
 
--   Laravel components are reusable blocks, such as menus, buttons, or layouts, that can be used throughout your application.
+- Laravel components are reusable blocks, such as menus, buttons, or layouts, that can be used throughout your application.
 
 ### **Directory**
 
--   All components should be stored in the `resources/views/components` directory. Ensure the folder name is spelled as `components`.
+- All components should be stored in the `resources/views/components` directory. Ensure the folder name is spelled as `components`.
 
 ### **Using Components**
 
--   To use a component, prefix its name with `x-` in your Blade files. For example:
--   Their is a global variable available in component files called **slot** that we can use to display anything that is wrapped withing the componet
-    -   You can use the php echo to display it or you can use blade template helper, which enables you to call variables by wrapping them between four curly brackets.
-    -   Under the hood, blade transforms the content within the brackets as echo whatever is inside the brackets.
--   To use a component in another file you will have to prefix the name of the component with **x-** to tell laravel that it is a component and for it to look for the file in the component folder
--   Example Layout File:
+- To use a component, prefix its name with `x-` in your Blade files. For example:
+- Their is a global variable available in component files called **slot** that we can use to display anything that is wrapped withing the componet
+  - You can use the php echo to display it or you can use blade template helper, which enables you to call variables by wrapping them between four curly brackets.
+  - Under the hood, blade transforms the content within the brackets as echo whatever is inside the brackets.
+- To use a component in another file you will have to prefix the name of the component with **x-** to tell laravel that it is a component and for it to look for the file in the component folder
+- Example Layout File:
 
 ```php
 <!-- layout.blade.php -->
@@ -472,7 +472,7 @@ Route::get('/user/{id}', function ($id) {
 </html>
 ```
 
--   Exaple using the component
+- Exaple using the component
 
 ```php
 <x-layout>
@@ -482,34 +482,34 @@ Route::get('/user/{id}', function ($id) {
 
 # Attributes, Props, & Conditional Classes(Styling)
 
--   **Attributes=>** All Lavarevl Components also have access to an **attributes object(HTML Attributes)**, example: _href, class, id, etc._ - You can access it by using the whole attributes passed or by getting only specific attribute:
+- **Attributes=>** All Lavarevl Components also have access to an **attributes object(HTML Attributes)**, example: _href, class, id, etc._ - You can access it by using the whole attributes passed or by getting only specific attribute:
 
-    ```php
-    //nav-item.blade.php
-    <a {{ $attributes }}>
-    {{ $slot }}
-    </a>
-    // or
-    <a {{ $attributes->get("href") }}>
-    {{ $slot }}
-    </a>
-    ```
+  ```php
+  //nav-item.blade.php
+  <a {{ $attributes }}>
+  {{ $slot }}
+  </a>
+  // or
+  <a {{ $attributes->get("href") }}>
+  {{ $slot }}
+  </a>
+  ```
 
-    ```php
-    // layout.blade.php
-     <nav>
-        <x-nav-item href="/">Home</x-nav-item>
-        <x-nav-item href="/about">About</x-nav-item>
-        <x-nav-item href="/contact">Contact</x-nav-item>
-     </nav>
-    ```
+  ```php
+  // layout.blade.php
+   <nav>
+      <x-nav-item href="/">Home</x-nav-item>
+      <x-nav-item href="/about">About</x-nav-item>
+      <x-nav-item href="/contact">Contact</x-nav-item>
+   </nav>
+  ```
 
--   **Props=>** By default all values added to the component will be considered as attributes,
--   When we accept a prop into a component, the first thing we need to do is to declare the prop we are accepting at the top of the file by using a **blade directive called _@props_** and pass in it an array of props we want to accept and any default value we want to give to those props.
--   All props and attributes as considered as string values by default. If we want to assign variables or other values to them we can just add a column before the prop name which allows us to bind some dynamic value or data to the prop as it's value.
--   if we do not declare the prop at the top of the file, blade will assume that the prop is an attribute and will treat it like that.
+- **Props=>** By default all values added to the component will be considered as attributes,
+- When we accept a prop into a component, the first thing we need to do is to declare the prop we are accepting at the top of the file by using a **blade directive called _@props_** and pass in it an array of props we want to accept and any default value we want to give to those props.
+- All props and attributes as considered as string values by default. If we want to assign variables or other values to them we can just add a column before the prop name which allows us to bind some dynamic value or data to the prop as it's value.
+- if we do not declare the prop at the top of the file, blade will assume that the prop is an attribute and will treat it like that.
 
--   **Conditional Classes=>** We can use conditional css classes in blade by using the blade directive: **@class**
+- **Conditional Classes=>** We can use conditional css classes in blade by using the blade directive: **@class**
 
 ```php
 //nav-item.blade.php
@@ -533,11 +533,11 @@ Route::get('/user/{id}', function ($id) {
 
 # Slots
 
--   Slots can be considered as different areas where we paste in content
--   Like we learn earlier, we can use the variable **slot** to access anything wrapped within a component.
--   **Types of Slots=>** We have default slot and named slots.
-    -   **Default Slot=>** This variable holds content of anything that is wrapped within the component
-    -   **Named Slots=>** These are multiple slots that are identift by using names and can be accessed as variables in the component. We can pass a slot by preceeding it with: **x-slot:** and then followed by the slot name or variable.
+- Slots can be considered as different areas where we paste in content
+- Like we learn earlier, we can use the variable **slot** to access anything wrapped within a component.
+- **Types of Slots=>** We have default slot and named slots.
+  - **Default Slot=>** This variable holds content of anything that is wrapped within the component
+  - **Named Slots=>** These are multiple slots that are identift by using names and can be accessed as variables in the component. We can pass a slot by preceeding it with: **x-slot:** and then followed by the slot name or variable.
 
 ```php
 //layout.blade.php
@@ -565,8 +565,8 @@ Route::get('/user/{id}', function ($id) {
 
 # Get Current Page(path/url)
 
--   We can use the globally available request object in laravel to get access to the current path(url) of our app
--   We can use that to style or perform actions in our app
+- We can use the globally available request object in laravel to get access to the current path(url) of our app
+- We can use that to style or perform actions in our app
 
 ```php
 // nav-item.blad.php
@@ -592,8 +592,8 @@ Route::get('/user/{id}', function ($id) {
 
 # Conditionals
 
--   We can conditionally render elements using conditionals.
--   We can either use the traditional php method or use blade helper directives to achieve it.
+- We can conditionally render elements using conditionals.
+- We can either use the traditional php method or use blade helper directives to achieve it.
 
 ```php
 // Using Raw PHP
@@ -639,7 +639,7 @@ Route::get('/user/{id}', function ($id) {
 
 # Passing Data to Views
 
--   We can pass a second arguement to the view functions, which will be an array where each of the keys will be extracted into variables once the view or template is loaded
+- We can pass a second arguement to the view functions, which will be an array where each of the keys will be extracted into variables once the view or template is loaded
 
 ```php
 // route/web.php
@@ -702,10 +702,10 @@ Route::get('/user/{id}', function ($id) {
 
 In this example:
 
--   `{id}` is a wildcard that captures the value from the URL.
--   When accessing `/user/123`, the `$id` parameter will hold the value `123`.
+- `{id}` is a wildcard that captures the value from the URL.
+- When accessing `/user/123`, the `$id` parameter will hold the value `123`.
 
--   A moore real world example is:
+- A moore real world example is:
 
 ```php
 //  routes/web.php
@@ -765,17 +765,17 @@ Route::get('/blogs/{id}', function ($id) {
 
 1. **Dynamic Parameters**: Wildcards let you capture data directly from the URL.
 2. **Multiple Wildcards**: You can define multiple wildcards in the same route, like so:
-    ```php
-    Route::get('/post/{postId}/comment/{commentId}', function ($postId, $commentId) {
-        return "Post ID: $postId, Comment ID: $commentId";
-    });
-    ```
+   ```php
+   Route::get('/post/{postId}/comment/{commentId}', function ($postId, $commentId) {
+       return "Post ID: $postId, Comment ID: $commentId";
+   });
+   ```
 3. **Optional Parameters**: Add a `?` after the parameter to make it optional, and provide a default value:
-    ```php
-    Route::get('/user/{name?}', function ($name = 'Guest') {
-        return "Hello, " . $name;
-    });
-    ```
+   ```php
+   Route::get('/user/{name?}', function ($name = 'Guest') {
+       return "Hello, " . $name;
+   });
+   ```
 
 ### Named Constraints:
 
@@ -789,37 +789,37 @@ Route::get('/user/{id}', function ($id) {
 
 # Route Views in Laravel
 
--   Route views in Laravel provide a simple way to return a static view directly from your routes without creating a controller. This approach is ideal for routes that only need to display a view without complex logic or data processing.
+- Route views in Laravel provide a simple way to return a static view directly from your routes without creating a controller. This approach is ideal for routes that only need to display a view without complex logic or data processing.
 
 ---
 
 ### **Defining a Route View**
 
--   You can define a route that returns a view using the `Route::view` method. Here's an example:
+- You can define a route that returns a view using the `Route::view` method. Here's an example:
 
 ```php
 Route::view('/welcome', 'welcome');
 ```
 
--   In this example:
+- In this example:
 
-    -   `/welcome` is the URL path.
-    -   `'welcome'` is the name of the Blade view (stored in the `resources/views` directory as `welcome.blade.php`).
+  - `/welcome` is the URL path.
+  - `'welcome'` is the name of the Blade view (stored in the `resources/views` directory as `welcome.blade.php`).
 
--   When a user visits `/welcome`, Laravel directly renders the `welcome.blade.php` file.
+- When a user visits `/welcome`, Laravel directly renders the `welcome.blade.php` file.
 
 ---
 
 ### **Passing Data to Views**
 
--   You can also pass data to the view using the `Route::view` method by providing an associative array as the third argument:
+- You can also pass data to the view using the `Route::view` method by providing an associative array as the third argument:
 
 ```php
 Route::view('/about', 'about', ['name' => 'Omar', 'role' => 'Engineer']);
 ```
 
--   In this example:
-    -   The `about` view will have access to `name` and `role` as variables.
+- In this example:
+  - The `about` view will have access to `name` and `role` as variables.
 
 **`about.blade.php` Example**:
 
@@ -856,43 +856,43 @@ Route::view('/about', 'about', ['name' => 'Omar', 'role' => 'Engineer']);
 
 ### **Best Practice**
 
--   While `Route::view` is useful for simple pages, as your application grows, it's better to use controllers to handle business logic and ensure scalability.
+- While `Route::view` is useful for simple pages, as your application grows, it's better to use controllers to handle business logic and ensure scalability.
 
 # Models
 
--   In Laravel, a **model** is a representation of a table in the database. It acts as the primary way to interact with data using the **Eloquent ORM (Object-Relational Mapping)**.
+- In Laravel, a **model** is a representation of a table in the database. It acts as the primary way to interact with data using the **Eloquent ORM (Object-Relational Mapping)**.
 
 #### Eloquent ORM (Object-Relational Mapping)
 
--   An ORM maps an object in your database(eg table row) to an object in your code(php code)
+- An ORM maps an object in your database(eg table row) to an object in your code(php code)
 
 #### Key Features of Models:
 
 1. **Database Table Mapping**:
 
-    - Each model corresponds to a database table.
-    - By default, Laravel assumes the table name is the plural form of the model name (e.g., `User` model maps to `users` table).
+   - Each model corresponds to a database table.
+   - By default, Laravel assumes the table name is the plural form of the model name (e.g., `User` model maps to `users` table).
 
 2. **Querying Data**:
 
-    - Models allow you to perform CRUD operations using Eloquent's intuitive and expressive syntax.
+   - Models allow you to perform CRUD operations using Eloquent's intuitive and expressive syntax.
 
 3. **Relationships**:
 
-    - Models define relationships like `one-to-one`, `one-to-many`, `many-to-many`, etc.
+   - Models define relationships like `one-to-one`, `one-to-many`, `many-to-many`, etc.
 
 4. **Attributes & Casting**:
-    - Models handle data attributes and casting them to specific types (e.g., `datetime`, `boolean`).
+   - Models handle data attributes and casting them to specific types (e.g., `datetime`, `boolean`).
 
 #### Defining a Model:
 
--   You can create a model using the Artisan command:
+- You can create a model using the Artisan command:
 
 ```bash
 php artisan make:model User
 ```
 
--   The `app/Models/User.php` file is generated:
+- The `app/Models/User.php` file is generated:
 
 ```php
 namespace App\Models;
@@ -908,40 +908,40 @@ class User extends Model {
 
 1. **Retrieve Data**:
 
-    ```php
-    use App\Models\User;
+   ```php
+   use App\Models\User;
 
-    $users = User::all(); // Get all users
-    $user = User::find(1); // Find user by ID
-    ```
+   $users = User::all(); // Get all users
+   $user = User::find(1); // Find user by ID
+   ```
 
 2. **Create Data**:
 
-    ```php
-    User::create([
-        'name' => 'Omar Jeng',
-        'email' => 'omar@example.com',
-        'password' => bcrypt('password'),
-    ]);
-    ```
+   ```php
+   User::create([
+       'name' => 'Omar Jeng',
+       'email' => 'omar@example.com',
+       'password' => bcrypt('password'),
+   ]);
+   ```
 
 3. **Update Data**:
 
-    ```php
-    $user = User::find(1);
-    $user->name = 'Updated Name';
-    $user->save();
-    ```
+   ```php
+   $user = User::find(1);
+   $user->name = 'Updated Name';
+   $user->save();
+   ```
 
 4. **Delete Data**:
-    ```php
-    $user = User::find(1);
-    $user->delete();
-    ```
+   ```php
+   $user = User::find(1);
+   $user->delete();
+   ```
 
 #### Relationships in Models:
 
--   Models can define relationships with other models. For example:
+- Models can define relationships with other models. For example:
 
 ```php
 // In User.php
@@ -966,7 +966,7 @@ class Post extends Model {
 }
 ```
 
--   With this relationship:
+- With this relationship:
 
 ```php
 $post = Post::find(1);
@@ -975,7 +975,7 @@ echo $post->user->name; // Access the user of the post
 
 # Migrations in Laravel
 
--   Migrations in Laravel are a type of version control for your database. They allow you to define and manage database schemas (tables, columns, indexes, etc.) using PHP code, rather than writing raw SQL queries.
+- Migrations in Laravel are a type of version control for your database. They allow you to define and manage database schemas (tables, columns, indexes, etc.) using PHP code, rather than writing raw SQL queries.
 
 ---
 
@@ -983,16 +983,16 @@ echo $post->user->name; // Access the user of the post
 
 1. **Version Control for Databases**:
 
-    - Migrations let you track changes to the database schema over time.
-    - Each migration is like a "commit" that documents a change, making it easier to collaborate and roll back changes when needed.
+   - Migrations let you track changes to the database schema over time.
+   - Each migration is like a "commit" that documents a change, making it easier to collaborate and roll back changes when needed.
 
 2. **Database Portability**:
 
-    - Migrations are database-agnostic, meaning they work across different database systems (e.g., MySQL, PostgreSQL, SQLite).
-    - You write PHP code, and Laravel generates the appropriate SQL for your database.
+   - Migrations are database-agnostic, meaning they work across different database systems (e.g., MySQL, PostgreSQL, SQLite).
+   - You write PHP code, and Laravel generates the appropriate SQL for your database.
 
 3. **Consistency Across Environments**:
-    - Migrations ensure that development, staging, and production environments have the same database structure.
+   - Migrations ensure that development, staging, and production environments have the same database structure.
 
 ---
 
@@ -1000,15 +1000,15 @@ echo $post->user->name; // Access the user of the post
 
 #### 1. **Creating Migrations**
 
--   Use the Artisan command to create a migration file:
+- Use the Artisan command to create a migration file:
 
 ```bash
 php artisan make:migration create_users_table
 ```
 
--   This generates a file in the `database/migrations` directory with a timestamped name (e.g., `2024_11_23_000000_create_users_table.php`).
+- This generates a file in the `database/migrations` directory with a timestamped name (e.g., `2024_11_23_000000_create_users_table.php`).
 
--   **Note** you can create a migration file while creating a mode by passing the **-m** flag or **--migration**
+- **Note** you can create a migration file while creating a mode by passing the **-m** flag or **--migration**
 
 ```bash
 php artisan make:model Post -m
@@ -1016,7 +1016,7 @@ php artisan make:model Post -m
 
 #### 2. **Editing the Migration File**
 
--   Inside the generated migration file, you define the schema for the table. For example:
+- Inside the generated migration file, you define the schema for the table. For example:
 
 ```php
 use Illuminate\Database\Migrations\Migration;
@@ -1042,25 +1042,25 @@ class CreateUsersTable extends Migration {
 
 #### 3. **Running Migrations**
 
--   To apply the migrations and update the database schema:
+- To apply the migrations and update the database schema:
 
 ```bash
 php artisan migrate
 ```
 
--   Laravel executes the `up()` method of each migration that hasn't been run yet.
+- Laravel executes the `up()` method of each migration that hasn't been run yet.
 
 #### 4. **Rolling Back Migrations**
 
--   To undo the last batch of migrations:
+- To undo the last batch of migrations:
 
 ```bash
 php artisan migrate:rollback
 ```
 
--   Laravel executes the `down()` method of each migration in the last batch.
+- Laravel executes the `down()` method of each migration in the last batch.
 
--   To rollback all migrations:
+- To rollback all migrations:
 
 ```bash
 php artisan migrate:reset
@@ -1068,17 +1068,17 @@ php artisan migrate:reset
 
 #### 5. **Refreshing Migrations**
 
--   To reset and re-run all migrations (useful during development):
+- To reset and re-run all migrations (useful during development):
 
 ```bash
 php artisan migrate:refresh
 ```
 
--   This is equivalent to rolling back all migrations and running them again.
+- This is equivalent to rolling back all migrations and running them again.
 
 #### 6. **Seeding Data with Migrations**
 
--   Migrations can work with seeders to populate tables with dummy or default data. For example:
+- Migrations can work with seeders to populate tables with dummy or default data. For example:
 
 ```bash
 php artisan migrate --seed
@@ -1088,44 +1088,44 @@ php artisan migrate --seed
 
 ### **Key Methods in Migrations**
 
--   **Schema Builder**:
-    -   Laravel provides a `Schema` facade for managing tables.
--   **Common Table Column Methods**:
+- **Schema Builder**:
+  - Laravel provides a `Schema` facade for managing tables.
+- **Common Table Column Methods**:
 
-    ```php
-    $table->string('name');         // VARCHAR
-    $table->integer('age');         // INTEGER
-    $table->boolean('is_active');   // BOOLEAN
-    $table->timestamp('created_at');// TIMESTAMP
-    $table->text('description');    // TEXT
-    ```
+  ```php
+  $table->string('name');         // VARCHAR
+  $table->integer('age');         // INTEGER
+  $table->boolean('is_active');   // BOOLEAN
+  $table->timestamp('created_at');// TIMESTAMP
+  $table->text('description');    // TEXT
+  ```
 
--   **Special Column Types**:
+- **Special Column Types**:
 
-    ```php
-    $table->id();                  // Auto-increment primary key
-    $table->timestamps();          // created_at and updated_at
-    $table->softDeletes();         // deleted_at for soft deletes
-    $table->foreignId('user_id')   // Foreign key column
-         ->constrained()           // Adds foreign key constraint
-         ->onDelete('cascade');    // Cascade delete
-    ```
+  ```php
+  $table->id();                  // Auto-increment primary key
+  $table->timestamps();          // created_at and updated_at
+  $table->softDeletes();         // deleted_at for soft deletes
+  $table->foreignId('user_id')   // Foreign key column
+       ->constrained()           // Adds foreign key constraint
+       ->onDelete('cascade');    // Cascade delete
+  ```
 
--   **Indexes**:
-    ```php
-    $table->unique('email');       // Unique index
-    $table->index('name');         // Simple index
-    $table->foreign('user_id')     // Foreign key
-          ->references('id')
-          ->on('users')
-          ->onDelete('cascade');
-    ```
+- **Indexes**:
+  ```php
+  $table->unique('email');       // Unique index
+  $table->index('name');         // Simple index
+  $table->foreign('user_id')     // Foreign key
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade');
+  ```
 
 ---
 
 ### **Example: Creating a Table**
 
--   Here’s a complete example for a `posts` table:
+- Here’s a complete example for a `posts` table:
 
 ```bash
 php artisan make:migration create_posts_table
@@ -1163,35 +1163,35 @@ Run the migration:
 php artisan migrate
 ```
 
--   This creates the `posts` table in your database with the specified schema.
+- This creates the `posts` table in your database with the specified schema.
 
 ---
 
 ### **Best Practices**
 
 1. **Always Test Your Migrations**:
-    - Before deploying, ensure migrations run successfully in a test environment.
+   - Before deploying, ensure migrations run successfully in a test environment.
 2. **Use Descriptive Names**:
 
-    - Migration names like `create_users_table` or `add_status_column_to_orders_table` make it clear what each migration does.
+   - Migration names like `create_users_table` or `add_status_column_to_orders_table` make it clear what each migration does.
 
 3. **Avoid Editing Migrations That Are Already Run**:
 
-    - Instead, create a new migration to modify the database (e.g., adding a column).
+   - Instead, create a new migration to modify the database (e.g., adding a column).
 
 4. **Use `down()` for Safe Rollbacks**:
 
-    - Always define a `down()` method to reverse changes safely.
+   - Always define a `down()` method to reverse changes safely.
 
 5. **Run Migrations in Deployment Pipelines**:
-    - Ensure your deployment process runs `php artisan migrate` to keep the database schema updated.
+   - Ensure your deployment process runs `php artisan migrate` to keep the database schema updated.
 
--   Migrations are a core feature in Laravel that simplify database management, provide a clear history of changes, and make collaboration seamless. By using migrations, you maintain clean, consistent, and version-controlled database schemas across all environments.
+- Migrations are a core feature in Laravel that simplify database management, provide a clear history of changes, and make collaboration seamless. By using migrations, you maintain clean, consistent, and version-controlled database schemas across all environments.
 
 # Factory in Laravel
 
--   In Laravel, a **factory** is a class used to define and generate fake data for testing and seeding databases.
--   Factories leverage Laravel's `Faker` library to quickly create dummy data for models, making it easier to test application features or populate the database with sample data.
+- In Laravel, a **factory** is a class used to define and generate fake data for testing and seeding databases.
+- Factories leverage Laravel's `Faker` library to quickly create dummy data for models, making it easier to test application features or populate the database with sample data.
 
 ---
 
@@ -1206,7 +1206,7 @@ php artisan migrate
 
 ### **Creating a Factory**
 
--   Factories are created using Artisan commands and stored in the `database/factories` directory.
+- Factories are created using Artisan commands and stored in the `database/factories` directory.
 
 #### **Command to Create a Factory**
 
@@ -1214,12 +1214,12 @@ php artisan migrate
 php artisan make:factory ExampleFactory --model=Example
 ```
 
--   `ExampleFactory`: The name of the factory.
--   `--model=Example`: Specifies the Eloquent model associated with the factory.
+- `ExampleFactory`: The name of the factory.
+- `--model=Example`: Specifies the Eloquent model associated with the factory.
 
--   This generates a file at `database/factories/ExampleFactory.php`.
+- This generates a file at `database/factories/ExampleFactory.php`.
 
--   You can also create a factory for a model while creating the model using the **-f** flag or the **--factory**
+- You can also create a factory for a model while creating the model using the **-f** flag or the **--factory**
 
 ```bash
 php artisan make:model Post -f
@@ -1229,7 +1229,7 @@ php artisan make:model Post -f
 
 ### **Structure of a Factory**
 
--   A typical factory file looks like this:
+- A typical factory file looks like this:
 
 ```php
 <?php
@@ -1257,32 +1257,32 @@ class ExampleFactory extends Factory
 
 #### **Explanation**
 
--   `protected $model`: Specifies the model this factory is tied to.
--   `definition()`: Returns an array of attributes with fake data for populating the model.
+- `protected $model`: Specifies the model this factory is tied to.
+- `definition()`: Returns an array of attributes with fake data for populating the model.
 
 ---
 
 ### **Using Factories**
 
--   Factories can be used to create records in two main contexts:
+- Factories can be used to create records in two main contexts:
 
 1. **Database Seeding**
 2. **Testing**
 
 #### **Basic Usage**
 
--   Create a single model instance:
-    ```php
-    Example::factory()->create();
-    ```
--   Create multiple instances:
-    ```php
-    Example::factory()->count(10)->create();
-    ```
+- Create a single model instance:
+  ```php
+  Example::factory()->create();
+  ```
+- Create multiple instances:
+  ```php
+  Example::factory()->count(10)->create();
+  ```
 
 #### **Custom Attributes**
 
--   Override default attributes when creating a model:
+- Override default attributes when creating a model:
 
 ```php
 Example::factory()->create([
@@ -1292,16 +1292,16 @@ Example::factory()->create([
 
 #### **Generating Data Without Saving**
 
--   Create a model instance without persisting it to the database:
-    ```php
-    Example::factory()->make();
-    ```
+- Create a model instance without persisting it to the database:
+  ```php
+  Example::factory()->make();
+  ```
 
 ---
 
 ### **Using Factories in Database Seeders**
 
--   Factories are often used in seeders to populate the database:
+- Factories are often used in seeders to populate the database:
 
 ```php
 <?php
@@ -1320,7 +1320,7 @@ class ExampleSeeder extends Seeder
 }
 ```
 
--   Run the seeder with:
+- Run the seeder with:
 
 ```bash
 php artisan db:seed --class=ExampleSeeder
@@ -1335,12 +1335,12 @@ php artisan db:seed --class=ExampleSeeder
 3. **Customizability**: Easily customize data generation for specific needs.
 4. **Efficiency**: Batch generation of data reduces manual work.
 
--   Factories are an essential tool in Laravel for testing and seeding, making development and debugging faster and more reliable.
+- Factories are an essential tool in Laravel for testing and seeding, making development and debugging faster and more reliable.
 
 ### **Using Tinker(php artisan tinker)**
 
--   We can use tinker interact with our laravel app in the commandline.
--   We can also run our factory using tinker:
+- We can use tinker interact with our laravel app in the commandline.
+- We can also run our factory using tinker:
 
 ```bash
 # 1
@@ -1427,19 +1427,19 @@ class PostFactory extends Factory
 
 # Database Seeders in Laravel
 
--   Database seeders in Laravel are used to populate your database with sample or initial data. Seeders are especially useful during development to quickly insert test data into your database or to set up the initial state for your application.
+- Database seeders in Laravel are used to populate your database with sample or initial data. Seeders are especially useful during development to quickly insert test data into your database or to set up the initial state for your application.
 
 ---
 
 ### **Creating a Seeder**
 
--   You can create a seeder using the `make:seeder` Artisan command:
+- You can create a seeder using the `make:seeder` Artisan command:
 
 ```bash
 php artisan make:seeder NameOfSeeder
 ```
 
--   This command generates a new seeder file in the `database/seeders` directory.
+- This command generates a new seeder file in the `database/seeders` directory.
 
 #### **Example: Creating a `UserSeeder`**
 
@@ -1447,13 +1447,13 @@ php artisan make:seeder NameOfSeeder
 php artisan make:seeder UserSeeder
 ```
 
--   This creates the file `database/seeders/UserSeeder.php`.
+- This creates the file `database/seeders/UserSeeder.php`.
 
 ---
 
 ### **Writing Seeder Logic**
 
--   Open the seeder file and define the data insertion logic in the `run` method.
+- Open the seeder file and define the data insertion logic in the `run` method.
 
 #### **Example: Populating the Users Table**
 
@@ -1475,7 +1475,7 @@ class UserSeeder extends Seeder
 }
 ```
 
--   You can also insert data manually:
+- You can also insert data manually:
 
 ```php
 User::create([
@@ -1489,13 +1489,13 @@ User::create([
 
 ### **Running Seeders**
 
--   To execute a seeder, use the `db:seed` Artisan command:
+- To execute a seeder, use the `db:seed` Artisan command:
 
 ```bash
 php artisan db:seed --class=UserSeeder
 ```
 
--   To run all seeders defined in `DatabaseSeeder`:
+- To run all seeders defined in `DatabaseSeeder`:
 
 ```bash
 php artisan db:seed
@@ -1505,9 +1505,9 @@ php artisan db:seed
 
 ### **The `DatabaseSeeder` File**
 
--   The `DatabaseSeeder` file is the main entry point for running multiple seeders. By default, it is located at `database/seeders/DatabaseSeeder.php`.
+- The `DatabaseSeeder` file is the main entry point for running multiple seeders. By default, it is located at `database/seeders/DatabaseSeeder.php`.
 
--   You can call multiple seeders from here:
+- You can call multiple seeders from here:
 
 ```php
 <?php
@@ -1532,11 +1532,11 @@ class DatabaseSeeder extends Seeder
 
 ### **Using Factories with Seeders**
 
--   Seeders often use **factories** to generate realistic dummy data. Factories allow you to define how your model's test data should look.
+- Seeders often use **factories** to generate realistic dummy data. Factories allow you to define how your model's test data should look.
 
 #### **Example: Using a Factory in a Seeder**
 
--   Assuming a `PostFactory` is defined:
+- Assuming a `PostFactory` is defined:
 
 ```php
 Post::factory(50)->create(); // Creates 50 posts
@@ -1546,22 +1546,22 @@ Post::factory(50)->create(); // Creates 50 posts
 
 ### **Resetting and Reseeding the Database**
 
--   If you want to reset the database and reseed it, you can use:
+- If you want to reset the database and reseed it, you can use:
 
 ```bash
 php artisan migrate:refresh --seed
 ```
 
--   This command:
-    1. Rolls back all migrations.
-    2. Re-runs the migrations.
-    3. Runs the seeders to repopulate the database.
+- This command:
+  1. Rolls back all migrations.
+  2. Re-runs the migrations.
+  3. Runs the seeders to repopulate the database.
 
 ---
 
 ### **Customizing Seeder Logic**
 
--   You can customize the logic in seeders to associate data or conditionally seed.
+- You can customize the logic in seeders to associate data or conditionally seed.
 
 #### **Example: Assigning Posts to Users**
 
@@ -1580,7 +1580,7 @@ public function run(): void
 
 ### **Testing with Seeders in Tinker**
 
--   You can use `tinker` to test your seeders:
+- You can use `tinker` to test your seeders:
 
 ```bash
 php artisan tinker
@@ -1592,36 +1592,36 @@ php artisan tinker
 ### **Summary of Commands**
 
 1. **Create a Seeder:**
-    ```bash
-    php artisan make:seeder NameOfSeeder
-    ```
+   ```bash
+   php artisan make:seeder NameOfSeeder
+   ```
 2. **Run a Specific Seeder:**
-    ```bash
-    php artisan db:seed --class=NameOfSeeder
-    ```
+   ```bash
+   php artisan db:seed --class=NameOfSeeder
+   ```
 3. **Run All Seeders:**
-    ```bash
-    php artisan db:seed
-    ```
+   ```bash
+   php artisan db:seed
+   ```
 4. **Reset and Reseed:**
-    ```bash
-    php artisan migrate:refresh --seed
-    ```
+   ```bash
+   php artisan migrate:refresh --seed
+   ```
 
 ---
 
 ### **Best Practices for Seeders**
 
--   Use factories for realistic data generation.
--   Avoid hardcoding sensitive data (e.g., passwords) in seeders.
--   Keep seeders modular by creating separate files for different models.
--   Use `DatabaseSeeder` to orchestrate multiple seeders.
+- Use factories for realistic data generation.
+- Avoid hardcoding sensitive data (e.g., passwords) in seeders.
+- Keep seeders modular by creating separate files for different models.
+- Use `DatabaseSeeder` to orchestrate multiple seeders.
 
 > By combining seeders with migrations and factories, Laravel provides a seamless way to set up and populate your database.
 
 # Explanation of Relationships in Laravel
 
--   Laravel provides various ways to define and manage relationships between tables using Eloquent ORM. These relationships represent the connections between data entities and make it easy to perform database queries involving related records.
+- Laravel provides various ways to define and manage relationships between tables using Eloquent ORM. These relationships represent the connections between data entities and make it easy to perform database queries involving related records.
 
 ---
 
@@ -1629,12 +1629,12 @@ php artisan tinker
 
 #### 1. **One-to-One Relationship**
 
--   Example: A user has one profile, and a profile belongs to one user.
--   **Models**: `User` and `Profile`.
+- Example: A user has one profile, and a profile belongs to one user.
+- **Models**: `User` and `Profile`.
 
 **Defining One-to-One**
 
--   In the **`User` model**:
+- In the **`User` model**:
 
 ```php
 public function profile()
@@ -1643,7 +1643,7 @@ public function profile()
 }
 ```
 
--   In the **`Profile` model**:
+- In the **`Profile` model**:
 
 ```php
 public function user()
@@ -1654,29 +1654,29 @@ public function user()
 
 **Usage in Tinker**:
 
--   Get a user's profile:
+- Get a user's profile:
 
-    ```php
-    $user = App\Models\User::find(1);
-    $profile = $user->profile;
-    ```
+  ```php
+  $user = App\Models\User::find(1);
+  $profile = $user->profile;
+  ```
 
--   Get the user from a profile:
-    ```php
-    $profile = App\Models\Profile::find(1);
-    $user = $profile->user;
-    ```
+- Get the user from a profile:
+  ```php
+  $profile = App\Models\Profile::find(1);
+  $user = $profile->user;
+  ```
 
 ---
 
 #### 2. **One-to-Many Relationship**
 
--   Example: A user can have many posts, but a post belongs to one user.
--   **Models**: `User` and `Post`.
+- Example: A user can have many posts, but a post belongs to one user.
+- **Models**: `User` and `Post`.
 
 **Defining One-to-Many**
 
--   In the **`User` model**:
+- In the **`User` model**:
 
 ```php
 public function posts()
@@ -1685,7 +1685,7 @@ public function posts()
 }
 ```
 
--   In the **`Post` model**:
+- In the **`Post` model**:
 
 ```php
 public function author()
@@ -1696,29 +1696,29 @@ public function author()
 
 **Usage in Tinker**:
 
--   Get all posts by a user:
+- Get all posts by a user:
 
-    ```php
-    $user = App\Models\User::find(1);
-    $posts = $user->posts;
-    ```
+  ```php
+  $user = App\Models\User::find(1);
+  $posts = $user->posts;
+  ```
 
--   Get the author of a post:
-    ```php
-    $post = App\Models\Post::find(1);
-    $author = $post->author;
-    ```
+- Get the author of a post:
+  ```php
+  $post = App\Models\Post::find(1);
+  $author = $post->author;
+  ```
 
 ---
 
 #### 3. **Many-to-Many Relationship**
 
--   Example: A post can have multiple tags, and a tag can belong to multiple posts.
--   **Models**: `Post` and `Tag`.
+- Example: A post can have multiple tags, and a tag can belong to multiple posts.
+- **Models**: `Post` and `Tag`.
 
 **Defining Many-to-Many**
 
--   In the **`Post` model**:
+- In the **`Post` model**:
 
 ```php
 public function tags()
@@ -1727,7 +1727,7 @@ public function tags()
 }
 ```
 
--   In the **`Tag` model**:
+- In the **`Tag` model**:
 
 ```php
 public function posts()
@@ -1738,8 +1738,8 @@ public function posts()
 
 **Pivot Table**
 
--   The pivot table should be named `post_tag` by default and include `post_id` and `tag_id` as columns.
--   You can create it in the same migration file as the post/tag or you can create a new migration file and create it there.
+- The pivot table should be named `post_tag` by default and include `post_id` and `tag_id` as columns.
+- You can create it in the same migration file as the post/tag or you can create a new migration file and create it there.
 
 ```php
 // Tags migration file
@@ -1783,13 +1783,13 @@ return new class extends Migration
 };
 ```
 
--   You can also create a seperate migration or model for post_tag
+- You can also create a seperate migration or model for post_tag
 
 ```bash
 php artisan make:model PostTag -mf
 ```
 
--   Open the migration file and update it. Make sure to update name to match post_tag in the migration file.
+- Open the migration file and update it. Make sure to update name to match post_tag in the migration file.
 
 ```php
 <?php
@@ -1825,7 +1825,7 @@ return new class extends Migration
 };
 ```
 
--   migrate the changes
+- migrate the changes
 
 ```bash
 php artisan migrate
@@ -1833,29 +1833,29 @@ php artisan migrate
 
 **Usage in Tinker**:
 
--   Get all tags for a post:
+- Get all tags for a post:
 
-    ```php
-    $post = App\Models\Post::find(1);
-    $tags = $post->tags;
-    ```
+  ```php
+  $post = App\Models\Post::find(1);
+  $tags = $post->tags;
+  ```
 
--   Get all posts for a tag:
-    ```php
-    $tag = App\Models\Tag::find(1);
-    $posts = $tag->posts;
-    ```
+- Get all posts for a tag:
+  ```php
+  $tag = App\Models\Tag::find(1);
+  $posts = $tag->posts;
+  ```
 
 ---
 
 #### 4. **Has-Many-Through Relationship**
 
--   Example: A country has many posts through users.
--   **Models**: `Country`, `User`, and `Post`.
+- Example: A country has many posts through users.
+- **Models**: `Country`, `User`, and `Post`.
 
 **Defining Has-Many-Through**
 
--   In the **`Country` model**:
+- In the **`Country` model**:
 
 ```php
 public function posts()
@@ -1866,27 +1866,27 @@ public function posts()
 
 **How It Works**
 
--   The `Country` model doesn’t have a direct relationship with the `Post` model.
--   Laravel uses the intermediate `User` model to query posts.
+- The `Country` model doesn’t have a direct relationship with the `Post` model.
+- Laravel uses the intermediate `User` model to query posts.
 
 **Usage in Tinker**:
 
--   Get all posts for a country:
-    ```php
-    $country = App\Models\Country::find(1);
-    $posts = $country->posts;
-    ```
+- Get all posts for a country:
+  ```php
+  $country = App\Models\Country::find(1);
+  $posts = $country->posts;
+  ```
 
 ---
 
 #### 5. **Polymorphic Relationships**
 
--   Example: A comment can belong to a post or a video.
--   **Models**: `Comment`, `Post`, and `Video`.
+- Example: A comment can belong to a post or a video.
+- **Models**: `Comment`, `Post`, and `Video`.
 
 **Defining Polymorphic Relationships**
 
--   In the **`Comment` model**:
+- In the **`Comment` model**:
 
 ```php
 public function commentable()
@@ -1895,7 +1895,7 @@ public function commentable()
 }
 ```
 
--   In the **`Post` model**:
+- In the **`Post` model**:
 
 ```php
 public function comments()
@@ -1904,7 +1904,7 @@ public function comments()
 }
 ```
 
--   In the **`Video` model**:
+- In the **`Video` model**:
 
 ```php
 public function comments()
@@ -1915,18 +1915,18 @@ public function comments()
 
 **Usage in Tinker**:
 
--   Get all comments for a post:
+- Get all comments for a post:
 
-    ```php
-    $post = App\Models\Post::find(1);
-    $comments = $post->comments;
-    ```
+  ```php
+  $post = App\Models\Post::find(1);
+  $comments = $post->comments;
+  ```
 
--   Get the owner of a comment:
-    ```php
-    $comment = App\Models\Comment::find(1);
-    $owner = $comment->commentable;
-    ```
+- Get the owner of a comment:
+  ```php
+  $comment = App\Models\Comment::find(1);
+  $owner = $comment->commentable;
+  ```
 
 ---
 
@@ -1970,34 +1970,34 @@ class User extends Authenticatable
 
 1. Display all blogs with their authors:
 
-    ```blade
-    @foreach ($blogs as $blog)
-        <li>
-            <a href="/blogs/{{ $blog->id }}">
-                <strong>{{ $blog->title }}</strong> - Written by: {{ $blog->author->name }}
-            </a>
-        </li>
-    @endforeach
-    ```
+   ```blade
+   @foreach ($blogs as $blog)
+       <li>
+           <a href="/blogs/{{ $blog->id }}">
+               <strong>{{ $blog->title }}</strong> - Written by: {{ $blog->author->name }}
+           </a>
+       </li>
+   @endforeach
+   ```
 
 2. Display a single blog with its author:
-    ```blade
-    <h2>{{ $blog->title }}</h2>
-    <p>{{ $blog->content }}</p>
-    <span>Author: {{ $blog->author->name }}</span>
-    ```
+   ```blade
+   <h2>{{ $blog->title }}</h2>
+   <p>{{ $blog->content }}</p>
+   <span>Author: {{ $blog->author->name }}</span>
+   ```
 
 ---
 
 ### **Eager Loading**
 
--   To optimize performance when querying related models, you can use **eager loading**:
+- To optimize performance when querying related models, you can use **eager loading**:
 
 ```php
 $blogs = Post::with('author')->get();
 ```
 
--   This ensures that related `User` data is loaded along with `Post` data, reducing the number of queries.
+- This ensures that related `User` data is loaded along with `Post` data, reducing the number of queries.
 
 ---
 
@@ -2010,7 +2010,7 @@ $blogs = Post::with('author')->get();
 
 # N+1 Problem, Lazy Loading, and Eager Loading in Laravel
 
--   Laravel Eloquent provides powerful tools for working with relationships, but understanding **N+1**, **lazy loading**, and **eager loading** is crucial to ensure your application remains efficient and scalable.
+- Laravel Eloquent provides powerful tools for working with relationships, but understanding **N+1**, **lazy loading**, and **eager loading** is crucial to ensure your application remains efficient and scalable.
 
 ---
 
@@ -2018,7 +2018,7 @@ $blogs = Post::with('author')->get();
 
 #### **What is the N+1 Problem?**
 
--   The **N+1 problem** occurs when querying a parent model and then iterating over its children, resulting in multiple queries being executed—one query to fetch the parent and N additional queries to fetch related children.
+- The **N+1 problem** occurs when querying a parent model and then iterating over its children, resulting in multiple queries being executed—one query to fetch the parent and N additional queries to fetch related children.
 
 #### **Example of N+1 Problem**
 
@@ -2032,12 +2032,12 @@ foreach ($posts as $post) {
 }
 ```
 
--   **Query Breakdown**:
+- **Query Breakdown**:
 
-    1. One query to retrieve all posts.
-    2. For each post, an additional query retrieves the author (`N` queries for `N` posts).
+  1. One query to retrieve all posts.
+  2. For each post, an additional query retrieves the author (`N` queries for `N` posts).
 
--   For 100 posts, this results in **101 queries**, which is inefficient.
+- For 100 posts, this results in **101 queries**, which is inefficient.
 
 ---
 
@@ -2045,11 +2045,11 @@ foreach ($posts as $post) {
 
 #### **What is Lazy Loading?**
 
--   Lazy loading is the default behavior in Laravel. When you access a related model, Eloquent fetches it on-demand (i.e., when it's first accessed).
+- Lazy loading is the default behavior in Laravel. When you access a related model, Eloquent fetches it on-demand (i.e., when it's first accessed).
 
 #### **Example of Lazy Loading**
 
--   Using the earlier example:
+- Using the earlier example:
 
 ```php
 $posts = Post::all(); // Only fetch posts
@@ -2059,13 +2059,13 @@ foreach ($posts as $post) {
 }
 ```
 
--   **How It Works**:
-    -   The `Post` records are retrieved first.
-    -   When `$post->author` is accessed, Eloquent runs a separate query to fetch the author.
+- **How It Works**:
+  - The `Post` records are retrieved first.
+  - When `$post->author` is accessed, Eloquent runs a separate query to fetch the author.
 
 #### **Problem with Lazy Loading**
 
--   Lazy loading can cause the **N+1 problem** because related models are queried one at a time.
+- Lazy loading can cause the **N+1 problem** because related models are queried one at a time.
 
 ---
 
@@ -2073,11 +2073,11 @@ foreach ($posts as $post) {
 
 #### **What is Eager Loading?**
 
--   Eager loading solves the **N+1 problem** by preloading the related data in a single query. It ensures that Laravel retrieves both the parent and related models upfront.
+- Eager loading solves the **N+1 problem** by preloading the related data in a single query. It ensures that Laravel retrieves both the parent and related models upfront.
 
 #### **How to Use Eager Loading**
 
--   You can use the `with()` method to specify relationships to preload.
+- You can use the `with()` method to specify relationships to preload.
 
 ```php
 $posts = Post::with('author')->get(); // Fetch posts with their authors in one query
@@ -2087,10 +2087,10 @@ foreach ($posts as $post) {
 }
 ```
 
--   **Query Breakdown**:
-    1. One query retrieves all posts.
-    2. A second query retrieves all authors for those posts.
-    -   Total: **2 queries**, regardless of the number of posts.
+- **Query Breakdown**:
+  1. One query retrieves all posts.
+  2. A second query retrieves all authors for those posts.
+  - Total: **2 queries**, regardless of the number of posts.
 
 ---
 
@@ -2106,11 +2106,11 @@ foreach ($posts as $post) {
 
 ### **4. Eager Loading with Nested Relationships**
 
--   Eager loading supports nested relationships, allowing you to preload related data for multiple levels.
+- Eager loading supports nested relationships, allowing you to preload related data for multiple levels.
 
 #### **Example**
 
--   If a `Post` has an `Author`, and the `Author` has a `Profile`:
+- If a `Post` has an `Author`, and the `Author` has a `Profile`:
 
 ```php
 $posts = Post::with('author.profile')->get();
@@ -2128,13 +2128,13 @@ This query fetches:
 
 ### **5. Preventing N+1 with Eager Loading**
 
--   Laravel's `with()` ensures related data is loaded efficiently:
+- Laravel's `with()` ensures related data is loaded efficiently:
 
 ```php
 $posts = Post::with('author')->get();
 ```
 
--   You can even add conditions to eager loading:
+- You can even add conditions to eager loading:
 
 ```php
 $posts = Post::with(['author' => function ($query) {
@@ -2146,7 +2146,7 @@ $posts = Post::with(['author' => function ($query) {
 
 ### **6. Eager Loading vs. Lazy Eager Loading**
 
--   Laravel also provides **lazy eager loading**, which allows you to load relationships after fetching the parent models.
+- Laravel also provides **lazy eager loading**, which allows you to load relationships after fetching the parent models.
 
 #### **Lazy Eager Loading Example**
 
@@ -2155,7 +2155,7 @@ $posts = Post::all(); // Fetch posts
 $posts->load('author'); // Load authors for the posts
 ```
 
--   This is useful when you already have the parent records and decide to load related data later.
+- This is useful when you already have the parent records and decide to load related data later.
 
 ---
 
@@ -2166,11 +2166,11 @@ $posts->load('author'); // Load authors for the posts
 3. **Use Eager Loading** (`with()`) whenever possible to avoid the **N+1 problem**.
 4. **Nested and Conditional Loading**: Allows loading complex relationships or applying filters to the related data.
 
--   By managing loading strategies effectively, you can ensure your Laravel application is both performant and readable.
+- By managing loading strategies effectively, you can ensure your Laravel application is both performant and readable.
 
 ### **Preventing Lazy Loading in Laravel**
 
--   Lazy loading can lead to the **N+1 problem**, which negatively impacts performance. To avoid this, Laravel provides a way to **prevent lazy loading** and ensure all relationships are explicitly loaded upfront.
+- Lazy loading can lead to the **N+1 problem**, which negatively impacts performance. To avoid this, Laravel provides a way to **prevent lazy loading** and ensure all relationships are explicitly loaded upfront.
 
 ---
 
@@ -2178,9 +2178,9 @@ $posts->load('author'); // Load authors for the posts
 
 #### **1. Use `preventLazyLoading()` in Development**
 
--   Laravel offers a method to disable lazy loading during development. This makes it easier to identify and fix potential performance issues by throwing an exception whenever lazy loading occurs.
+- Laravel offers a method to disable lazy loading during development. This makes it easier to identify and fix potential performance issues by throwing an exception whenever lazy loading occurs.
 
--   Add the following to your `AppServiceProvider`'s `boot()` method:
+- Add the following to your `AppServiceProvider`'s `boot()` method:
 
 ```php
 use Illuminate\Database\Eloquent\Model;
@@ -2191,13 +2191,13 @@ public function boot()
 }
 ```
 
--   **Effect**: If you access a relationship that wasn’t explicitly loaded using `with()`, Laravel will throw an exception.
+- **Effect**: If you access a relationship that wasn’t explicitly loaded using `with()`, Laravel will throw an exception.
 
 ---
 
 #### **2. Allow Lazy Loading in Production**
 
--   Since exceptions could break the application, you can conditionally enable lazy loading only in non-production environments:
+- Since exceptions could break the application, you can conditionally enable lazy loading only in non-production environments:
 
 ```php
 if (!app()->isProduction()) {
@@ -2209,7 +2209,7 @@ if (!app()->isProduction()) {
 
 #### **3. Fix Lazy Loading Issues**
 
--   When exceptions occur due to lazy loading, update your queries to explicitly use **eager loading** with the `with()` method:
+- When exceptions occur due to lazy loading, update your queries to explicitly use **eager loading** with the `with()` method:
 
 ```php
 $posts = Post::with('author')->get();
@@ -2225,50 +2225,50 @@ $posts = Post::with('author')->get();
 
 ---
 
--   By enabling `preventLazyLoading()`, you can enforce better practices and optimize your Laravel application's performance.
+- By enabling `preventLazyLoading()`, you can enforce better practices and optimize your Laravel application's performance.
 
 # Pagination in Laravel: A Comprehensive Guide
 
--   Pagination in Laravel provides a simple and elegant way to handle large datasets by splitting them into smaller, more manageable chunks. Laravel’s paginator is highly customizable, with support for different CSS frameworks and the ability to define custom views.
+- Pagination in Laravel provides a simple and elegant way to handle large datasets by splitting them into smaller, more manageable chunks. Laravel’s paginator is highly customizable, with support for different CSS frameworks and the ability to define custom views.
 
 ---
 
 ### **Basic Pagination**
 
--   Laravel provides two main methods for pagination:
+- Laravel provides two main methods for pagination:
 
 1. **`paginate`**:
 
-    - Retrieves a specified number of records per page.
-    - Returns an instance of `LengthAwarePaginator`.
+   - Retrieves a specified number of records per page.
+   - Returns an instance of `LengthAwarePaginator`.
 
-    ```php
-    $blogs = Post::paginate(10);
-    return view('blogs', ['blogs' => $blogs]);
-    ```
+   ```php
+   $blogs = Post::paginate(10);
+   return view('blogs', ['blogs' => $blogs]);
+   ```
 
 2. **`simplePaginate`**:
 
-    - Optimized for performance but lacks page numbers.
-    - Returns an instance of `Paginator`.
+   - Optimized for performance but lacks page numbers.
+   - Returns an instance of `Paginator`.
 
-    ```php
-    $blogs = Post::simplePaginate(10);
-    return view('blogs', ['blogs' => $blogs]);
-    ```
+   ```php
+   $blogs = Post::simplePaginate(10);
+   return view('blogs', ['blogs' => $blogs]);
+   ```
 
 3. **`cursorPaginate`**:
 
-    - Optimized for performance and lacks page numbers just like the simplePaginate but **it is the most performant option** especially if you are dealing with a large dataset.
-    - It has a downside though, the url for next page is some randomly generated string and user cannot manually change the page from the url.
-    - Returns an instance of `Paginator`.
+   - Optimized for performance and lacks page numbers just like the simplePaginate but **it is the most performant option** especially if you are dealing with a large dataset.
+   - It has a downside though, the url for next page is some randomly generated string and user cannot manually change the page from the url.
+   - Returns an instance of `Paginator`.
 
-    ```php
-    $blogs = Post::with("author")->with("tags")->cursorPaginate(10);
-    return view('blogs', ['blogs' => $blogs]);
-    ```
+   ```php
+   $blogs = Post::with("author")->with("tags")->cursorPaginate(10);
+   return view('blogs', ['blogs' => $blogs]);
+   ```
 
--   In your Blade file, use the `links()` method to render the pagination links:
+- In your Blade file, use the `links()` method to render the pagination links:
 
 ```php
 <ul>
@@ -2288,7 +2288,7 @@ $posts = Post::with('author')->get();
 
 #### **1. Using the Default Tailwind CSS View**
 
--   Laravel assumes **Tailwind CSS** is the default CSS framework for pagination. The `links()` method generates Tailwind-styled pagination out of the box.
+- Laravel assumes **Tailwind CSS** is the default CSS framework for pagination. The `links()` method generates Tailwind-styled pagination out of the box.
 
 Example:
 
@@ -2300,23 +2300,23 @@ This uses the `resources/views/vendor/pagination/tailwind.blade.php` view.
 
 #### **2. Switching to Bootstrap or Custom CSS Frameworks**
 
--   If you are using **Bootstrap** or another framework, you can change the pagination view globally or locally.
+- If you are using **Bootstrap** or another framework, you can change the pagination view globally or locally.
 
 ##### **Global Customization in \*\***`AppServiceProvider`\*\*
 
--   To switch globally to Bootstrap:
+- To switch globally to Bootstrap:
 
 1. Open `App\Providers\AppServiceProvider.php`.
 2. Add the following in the `boot` method:
 
-    ```php
-    use Illuminate\Pagination\Paginator;
+   ```php
+   use Illuminate\Pagination\Paginator;
 
-    public function boot()
-    {
-        Paginator::useBootstrap();
-    }
-    ```
+   public function boot()
+   {
+       Paginator::useBootstrap();
+   }
+   ```
 
 To switch to a custom view:
 
@@ -2326,7 +2326,7 @@ Paginator::defaultView('custom-pagination-view');
 
 ##### **Local Customization for Specific Paginations**
 
--   You can specify a custom view directly in the Blade file:
+- You can specify a custom view directly in the Blade file:
 
 ```php
 {{ $blogs->links('vendor.pagination.bootstrap') }} <!-- Use Bootstrap view -->
@@ -2341,9 +2341,9 @@ To modify the default pagination views:
 
 1. Run the following Artisan command:
 
-    ```bash
-    php artisan vendor:publish --tag=laravel-pagination
-    ```
+   ```bash
+   php artisan vendor:publish --tag=laravel-pagination
+   ```
 
 2. This copies the pagination views to `resources/views/vendor/pagination/`.
 
@@ -2353,7 +2353,7 @@ To modify the default pagination views:
 
 ### **Examples with \*\***`blogs.blade.php`\*\*
 
--   Here’s how you can implement pagination in a Blade file:
+- Here’s how you can implement pagination in a Blade file:
 
 ```php
 <x-layout>
@@ -2383,51 +2383,51 @@ To modify the default pagination views:
 
 ### **Switching Back to Tailwind Pagination**
 
--   If you want to revert to Tailwind CSS, use:
+- If you want to revert to Tailwind CSS, use:
 
 ```php
 Paginator::useTailwind();
 ```
 
--   This is Laravel’s default pagination style.
+- This is Laravel’s default pagination style.
 
 ---
 
 ### **Conclusion**
 
--   Laravel’s pagination system is highly flexible, supporting Tailwind CSS by default while allowing seamless integration with other frameworks like Bootstrap or custom views. Additionally, using eager loading in pagination ensures optimal performance by avoiding the N+1 problem. Customize your pagination views to match your application’s design and provide a polished user experience.
+- Laravel’s pagination system is highly flexible, supporting Tailwind CSS by default while allowing seamless integration with other frameworks like Bootstrap or custom views. Additionally, using eager loading in pagination ensures optimal performance by avoiding the N+1 problem. Customize your pagination views to match your application’s design and provide a polished user experience.
 
 # Forms, CSRF Tokens, and Request Validation in Laravel
 
--   Laravel provides robust tools to handle **forms**, protect against **CSRF attacks**, and enforce **request validation**. Let’s combine these concepts and see how they work together in a complete example.
+- Laravel provides robust tools to handle **forms**, protect against **CSRF attacks**, and enforce **request validation**. Let’s combine these concepts and see how they work together in a complete example.
 
 ---
 
 ### **1. Forms in Laravel**
 
--   Forms in Laravel are used to capture and send data from the user to the server. They are implemented using standard HTML form elements, and Laravel enhances them with features like validation and error handling.
+- Forms in Laravel are used to capture and send data from the user to the server. They are implemented using standard HTML form elements, and Laravel enhances them with features like validation and error handling.
 
 #### **Basic Structure**:
 
 ```html
 <form method="POST" action="/blogs">
-    @csrf
-    <!-- Form Fields -->
-    <input type="text" name="title" placeholder="Enter title" />
-    <textarea name="content" placeholder="Enter content"></textarea>
+  @csrf
+  <!-- Form Fields -->
+  <input type="text" name="title" placeholder="Enter title" />
+  <textarea name="content" placeholder="Enter content"></textarea>
 
-    <button type="submit">Submit</button>
+  <button type="submit">Submit</button>
 </form>
 ```
 
 #### **Key Elements**:
 
 1. **`method="POST"`**:
-    - Specifies the HTTP method (e.g., POST, GET, PUT) for the request.
+   - Specifies the HTTP method (e.g., POST, GET, PUT) for the request.
 2. **`action="/blogs"`**:
-    - URL where the form data is sent upon submission.
+   - URL where the form data is sent upon submission.
 3. **`name` Attributes**:
-    - Input names (`name="title"`, `name="content"`) map directly to the fields expected in the backend.
+   - Input names (`name="title"`, `name="content"`) map directly to the fields expected in the backend.
 
 ---
 
@@ -2445,28 +2445,28 @@ Paginator::useTailwind();
 
 ```html
 <form method="POST" action="/blogs">
-    @csrf
-    <!-- Form Fields -->
-    <input type="text" name="title" placeholder="Enter title" />
-    <textarea name="content" placeholder="Enter content"></textarea>
+  @csrf
+  <!-- Form Fields -->
+  <input type="text" name="title" placeholder="Enter title" />
+  <textarea name="content" placeholder="Enter content"></textarea>
 
-    <button type="submit">Submit</button>
+  <button type="submit">Submit</button>
 </form>
 ```
 
 #### **Behind the Scenes**:
 
--   The `@csrf` directive inserts a hidden input field with the token:
-    ```html
-    <input type="hidden" name="_token" value="csrf_token_value" />
-    ```
--   Laravel checks this token when the form is submitted to ensure the request is legitimate.
+- The `@csrf` directive inserts a hidden input field with the token:
+  ```html
+  <input type="hidden" name="_token" value="csrf_token_value" />
+  ```
+- Laravel checks this token when the form is submitted to ensure the request is legitimate.
 
 ---
 
 ### **3. Request Validation**
 
--   Validation ensures that the data submitted by users meets your application's requirements. Laravel provides a simple, expressive way to define and enforce validation rules.
+- Validation ensures that the data submitted by users meets your application's requirements. Laravel provides a simple, expressive way to define and enforce validation rules.
 
 #### **Validation Process**:
 
@@ -2492,18 +2492,18 @@ Route::post('/blogs', function (Request $request) {
 
 #### **Validation Rules**:
 
--   `required`: Ensures the field is not empty.
--   `max:255`: Limits the number of characters.
--   `min:4`: Sets a minimum character length.
--   Laravel automatically handles:
-    -   Redirecting back with errors if validation fails.
-    -   Passing errors to the view for display.
+- `required`: Ensures the field is not empty.
+- `max:255`: Limits the number of characters.
+- `min:4`: Sets a minimum character length.
+- Laravel automatically handles:
+  - Redirecting back with errors if validation fails.
+  - Passing errors to the view for display.
 
 ---
 
 ### **4. Handling Errors in Forms**
 
--   When validation fails, Laravel sends error messages back to the form. You can display them using the `$errors` variable.
+- When validation fails, Laravel sends error messages back to the form. You can display them using the `$errors` variable.
 
 #### **Global Error Display**:
 
@@ -2526,7 +2526,7 @@ Route::post('/blogs', function (Request $request) {
 @enderror
 ```
 
--   **`old('title')`**: Preserves the user’s input after validation fails.
+- **`old('title')`**: Preserves the user’s input after validation fails.
 
 ---
 
@@ -2593,38 +2593,38 @@ Route::post('/blogs', function (Request $request) {
 ### **6. Workflow Summary**
 
 1. **User Interaction**:
-    - User fills out the form and submits it.
+   - User fills out the form and submits it.
 2. **CSRF Protection**:
-    - Laravel verifies the CSRF token to ensure the request is legitimate.
+   - Laravel verifies the CSRF token to ensure the request is legitimate.
 3. **Validation**:
-    - Laravel checks the submitted data against the defined rules.
-    - If validation fails:
-        - The user is redirected back to the form with error messages.
-    - If validation passes:
-        - The data is processed (e.g., saved to the database).
+   - Laravel checks the submitted data against the defined rules.
+   - If validation fails:
+     - The user is redirected back to the form with error messages.
+   - If validation passes:
+     - The data is processed (e.g., saved to the database).
 4. **Response**:
-    - The user is redirected to the desired page (e.g., a blog list or success page).
+   - The user is redirected to the desired page (e.g., a blog list or success page).
 
--   This setup ensures secure, user-friendly form handling in your Laravel application.
+- This setup ensures secure, user-friendly form handling in your Laravel application.
 
 # Editing, Updating, and Deleting Resources in Laravel
 
--   Laravel provides intuitive methods for editing, updating, and deleting resources using RESTful conventions. These operations are crucial for maintaining and managing application data.
+- Laravel provides intuitive methods for editing, updating, and deleting resources using RESTful conventions. These operations are crucial for maintaining and managing application data.
 
 ---
 
 ### **1. Editing Resources**
 
--   When editing a resource, you typically display the resource's existing data in a form, allowing the user to make changes.
+- When editing a resource, you typically display the resource's existing data in a form, allowing the user to make changes.
 
 #### **Edit Form**
 
--   The edit form is similar to the creation form but pre-filled with the current values of the resource. The user modifies the fields and submits the form.
+- The edit form is similar to the creation form but pre-filled with the current values of the resource. The user modifies the fields and submits the form.
 
 **Key Points**:
 
--   Use a `GET` route for rendering the edit form.
--   Pre-fill the form fields using the resource's current data.
+- Use a `GET` route for rendering the edit form.
+- Pre-fill the form fields using the resource's current data.
 
 #### **Example Route for Editing**:
 
@@ -2637,7 +2637,7 @@ Route::get('/blogs/{id}/edit', function ($id) {
 
 #### **Pre-Filling the Form**:
 
--   In the Blade template:
+- In the Blade template:
 
 ```php
 <input type="text" name="title" value="{{ old('title', $blog->title) }}">
@@ -2646,18 +2646,18 @@ Route::get('/blogs/{id}/edit', function ($id) {
 
 Here:
 
--   `old()` ensures the user’s input is retained after validation errors.
--   `old('field', $blog->field)` provides a fallback to the current value in case of no user input.
+- `old()` ensures the user’s input is retained after validation errors.
+- `old('field', $blog->field)` provides a fallback to the current value in case of no user input.
 
 ---
 
 ### **2. Updating Resources**
 
--   Updating involves receiving the modified data from the edit form and saving it to the database.
+- Updating involves receiving the modified data from the edit form and saving it to the database.
 
 #### **Update Route**:
 
--   Laravel uses a `PUT` or `PATCH` request for updating:
+- Laravel uses a `PUT` or `PATCH` request for updating:
 
 ```php
 Route::put('/blogs/{id}', function (Request $request, $id) {
@@ -2685,14 +2685,14 @@ Route::put('/blogs/{id}', function (Request $request, $id) {
 </form>
 ```
 
--   `@method('PUT')` is required because HTML forms do not support `PUT` or `PATCH`.
--   `Post::findOrFail($id)` ensures the resource exists or throws a 404 error.
+- `@method('PUT')` is required because HTML forms do not support `PUT` or `PATCH`.
+- `Post::findOrFail($id)` ensures the resource exists or throws a 404 error.
 
 ---
 
 ### **3. Deleting Resources**
 
--   Deleting involves removing a resource from the database. This operation uses a `DELETE` request.
+- Deleting involves removing a resource from the database. This operation uses a `DELETE` request.
 
 #### **Delete Route**:
 
@@ -2726,7 +2726,7 @@ Route::delete('/blogs/{id}', function ($id) {
 
 ### **4. Combining Editing, Updating, and Deleting**
 
--   Here’s how these operations work together in a resourceful controller setup.
+- Here’s how these operations work together in a resourceful controller setup.
 
 #### **Controller**:
 
@@ -2768,10 +2768,10 @@ public function destroy($id) {
 Route::resource('blogs', BlogController::class);
 ```
 
--   The `Route::resource` method automatically defines all RESTful routes, including:
-    -   `GET /blogs/{id}/edit` for editing.
-    -   `PUT /blogs/{id}` for updating.
-    -   `DELETE /blogs/{id}` for deleting.
+- The `Route::resource` method automatically defines all RESTful routes, including:
+  - `GET /blogs/{id}/edit` for editing.
+  - `PUT /blogs/{id}` for updating.
+  - `DELETE /blogs/{id}` for deleting.
 
 ---
 
@@ -2810,10 +2810,8 @@ Route::resource('blogs', BlogController::class);
 
 ```html
 <form method="POST" action="/blogs/{{ $blog->id }}">
-    @csrf @method('DELETE')
-    <button type="submit" onclick="return confirm('Are you sure?')">
-        Delete
-    </button>
+  @csrf @method('DELETE')
+  <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
 </form>
 ```
 
@@ -2821,28 +2819,28 @@ Route::resource('blogs', BlogController::class);
 
 ### **6. Summary**
 
--   **Editing**: Use `GET` to retrieve the resource and render a pre-filled form.
--   **Updating**: Use `PUT` or `PATCH` to validate and save the modified data.
--   **Deleting**: Use `DELETE` to remove the resource securely.
--   Combine all these with resource controllers for cleaner and more maintainable code.
+- **Editing**: Use `GET` to retrieve the resource and render a pre-filled form.
+- **Updating**: Use `PUT` or `PATCH` to validate and save the modified data.
+- **Deleting**: Use `DELETE` to remove the resource securely.
+- Combine all these with resource controllers for cleaner and more maintainable code.
 
--   This approach aligns with Laravel’s RESTful principles, making the application consistent and scalable.
+- This approach aligns with Laravel’s RESTful principles, making the application consistent and scalable.
 
 # Controllers in Laravel
 
--   Controllers in Laravel are classes that handle the logic for HTTP requests. Instead of defining all your request-handling logic in routes, controllers allow you to organize your code into reusable, maintainable methods. This helps separate concerns and keeps your application structure clean.
+- Controllers in Laravel are classes that handle the logic for HTTP requests. Instead of defining all your request-handling logic in routes, controllers allow you to organize your code into reusable, maintainable methods. This helps separate concerns and keeps your application structure clean.
 
 ---
 
 ### **Defining a Controller**
 
--   A controller is typically stored in the `app/Http/Controllers` directory. Laravel provides an Artisan command to create controllers:
+- A controller is typically stored in the `app/Http/Controllers` directory. Laravel provides an Artisan command to create controllers:
 
 ```bash
 php artisan make:controller BlogController
 ```
 
--   This creates a file named `BlogController.php` inside the `app/Http/Controllers` directory.
+- This creates a file named `BlogController.php` inside the `app/Http/Controllers` directory.
 
 **Example of a Basic Controller**:
 
@@ -2871,7 +2869,7 @@ class BlogController extends Controller
 
 ### **Registering Controller Methods in Routes**
 
--   To use a controller in your routes, you can specify the controller and method:
+- To use a controller in your routes, you can specify the controller and method:
 
 **Example**:
 
@@ -2882,14 +2880,14 @@ Route::get('/blogs', [BlogController::class, 'index']);
 Route::get('/blogs/{id}', [BlogController::class, 'show']);
 ```
 
--   The first route points to the `index` method of `BlogController`.
--   The second route points to the `show` method and passes the `{id}` parameter to it.
+- The first route points to the `index` method of `BlogController`.
+- The second route points to the `show` method and passes the `{id}` parameter to it.
 
 ---
 
 ### **Resource Controllers**
 
--   Laravel simplifies CRUD operations using resource controllers. A resource controller maps HTTP verbs (GET, POST, PUT, DELETE) to predefined controller methods.
+- Laravel simplifies CRUD operations using resource controllers. A resource controller maps HTTP verbs (GET, POST, PUT, DELETE) to predefined controller methods.
 
 You can create a resource controller using:
 
@@ -2899,13 +2897,13 @@ php artisan make:controller BlogController --resource
 
 **Generated Methods in Resource Controller**:
 
--   `index`: Display a listing of the resource.
--   `create`: Show the form for creating a new resource.
--   `store`: Handle storing a new resource.
--   `show`: Display a specific resource.
--   `edit`: Show the form for editing a specific resource.
--   `update`: Handle updating a specific resource.
--   `destroy`: Handle deleting a specific resource.
+- `index`: Display a listing of the resource.
+- `create`: Show the form for creating a new resource.
+- `store`: Handle storing a new resource.
+- `show`: Display a specific resource.
+- `edit`: Show the form for editing a specific resource.
+- `update`: Handle updating a specific resource.
+- `destroy`: Handle deleting a specific resource.
 
 ---
 
@@ -2983,36 +2981,36 @@ use App\Http\Controllers\BlogController;
 Route::resource('blogs', BlogController::class);
 ```
 
--   This single line generates all necessary CRUD routes.
+- This single line generates all necessary CRUD routes.
 
 ---
 
 ### **API Controllers in Laravel**
 
--   API controllers in Laravel are specifically designed to handle API-related requests, typically providing JSON responses instead of rendering views. They streamline building RESTful APIs and follow similar principles to resource controllers but with API-specific conventions.
+- API controllers in Laravel are specifically designed to handle API-related requests, typically providing JSON responses instead of rendering views. They streamline building RESTful APIs and follow similar principles to resource controllers but with API-specific conventions.
 
 ---
 
 ### **Creating an API Controller**
 
--   To generate an API controller, use the `--api` flag:
+- To generate an API controller, use the `--api` flag:
 
 ```bash
 php artisan make:controller ApiBlogController --api
 ```
 
--   This creates a controller with methods for standard RESTful operations:
-    -   `index` - List resources
-    -   `store` - Create a new resource
-    -   `show` - Display a specific resource
-    -   `update` - Update a resource
-    -   `destroy` - Delete a resource
+- This creates a controller with methods for standard RESTful operations:
+  - `index` - List resources
+  - `store` - Create a new resource
+  - `show` - Display a specific resource
+  - `update` - Update a resource
+  - `destroy` - Delete a resource
 
 ---
 
 ### **Defining API Routes**
 
--   API controllers are typically grouped under `api.php` and use the `/api` prefix. Here's how to register routes for an API controller:
+- API controllers are typically grouped under `api.php` and use the `/api` prefix. Here's how to register routes for an API controller:
 
 ```php
 use App\Http\Controllers\ApiBlogController;
@@ -3020,18 +3018,18 @@ use App\Http\Controllers\ApiBlogController;
 Route::apiResource('blogs', ApiBlogController::class);
 ```
 
--   This automatically generates API routes like:
-    -   `GET /api/blogs` → `index`
-    -   `POST /api/blogs` → `store`
-    -   `GET /api/blogs/{id}` → `show`
-    -   `PUT /api/blogs/{id}` → `update`
-    -   `DELETE /api/blogs/{id}` → `destroy`
+- This automatically generates API routes like:
+  - `GET /api/blogs` → `index`
+  - `POST /api/blogs` → `store`
+  - `GET /api/blogs/{id}` → `show`
+  - `PUT /api/blogs/{id}` → `update`
+  - `DELETE /api/blogs/{id}` → `destroy`
 
 ---
 
 ### **Example API Controller**
 
--   Here’s how an API controller might look for a blogging system:
+- Here’s how an API controller might look for a blogging system:
 
 ```php
 namespace App\Http\Controllers;
@@ -3095,21 +3093,21 @@ class ApiBlogController extends Controller
 
 ---
 
--   API controllers, combined with tools like **Laravel Sanctum** or **Passport**, make it easy to build secure and scalable APIs. This design is ideal for mobile apps or external systems that interact with your application.
+- API controllers, combined with tools like **Laravel Sanctum** or **Passport**, make it easy to build secure and scalable APIs. This design is ideal for mobile apps or external systems that interact with your application.
 
 ---
 
 # Route Model Binding in Laravel
 
--   Route Model Binding is a powerful Laravel feature that allows you to automatically inject model instances into your routes based on route parameters. This simplifies your code, improves readability, and ensures you are always working with valid models.
+- Route Model Binding is a powerful Laravel feature that allows you to automatically inject model instances into your routes based on route parameters. This simplifies your code, improves readability, and ensures you are always working with valid models.
 
 ---
 
 ### **How It Works**
 
--   Instead of manually querying a model based on a route parameter, Laravel automatically retrieves the model instance when the parameter matches the model's ID or another attribute.
+- Instead of manually querying a model based on a route parameter, Laravel automatically retrieves the model instance when the parameter matches the model's ID or another attribute.
 
--   For example:
+- For example:
 
 ```php
 Route::get('/blogs/{blog}', function (Post $blog) {
@@ -3117,9 +3115,9 @@ Route::get('/blogs/{blog}', function (Post $blog) {
 });
 ```
 
--   In this route:
-    1. The `{blog}` parameter matches the model `Post`.
-    2. Laravel automatically queries the database and injects the corresponding `Post` instance into the `$blog` variable.
+- In this route:
+  1. The `{blog}` parameter matches the model `Post`.
+  2. Laravel automatically queries the database and injects the corresponding `Post` instance into the `$blog` variable.
 
 ---
 
@@ -3127,9 +3125,9 @@ Route::get('/blogs/{blog}', function (Post $blog) {
 
 #### 1. **Implicit Binding**
 
--   Implicit binding is the default behavior. Laravel determines the model to retrieve based on:
-    -   The route parameter name (e.g., `{blog}`).
-    -   The parameter's type hint in the route closure or controller method (e.g., `Post`).
+- Implicit binding is the default behavior. Laravel determines the model to retrieve based on:
+  - The route parameter name (e.g., `{blog}`).
+  - The parameter's type hint in the route closure or controller method (e.g., `Post`).
 
 **Example**:
 
@@ -3140,12 +3138,12 @@ Route::get('/blogs/{blog}', function (Post $blog) {
 });
 ```
 
--   Here:
+- Here:
 
-    -   Laravel matches the `{blog}` route parameter to the `id` column in the `posts` table.
-    -   If no matching model is found, a `404 Not Found` response is returned automatically.
+  - Laravel matches the `{blog}` route parameter to the `id` column in the `posts` table.
+  - If no matching model is found, a `404 Not Found` response is returned automatically.
 
--   By Default Laravel will use the id field to find the query, and the above query is the same as the following:
+- By Default Laravel will use the id field to find the query, and the above query is the same as the following:
 
 ```php
 Route::get('/blogs/{blog:id}', function (Post $blog) {
@@ -3153,7 +3151,7 @@ Route::get('/blogs/{blog:id}', function (Post $blog) {
 });
 ```
 
--   So if we want to quickly query using another fields in the databse, we can specify that field. Example: getting a blog by its slug:
+- So if we want to quickly query using another fields in the databse, we can specify that field. Example: getting a blog by its slug:
 
 ```php
 Route::get('/blogs/{blog:slug}', function (Post $blog) {
@@ -3165,11 +3163,11 @@ Route::get('/blogs/{blog:slug}', function (Post $blog) {
 
 #### 2. **Customizing the Key for Binding**
 
--   By default, Laravel uses the `id` column to retrieve the model. You can customize this by overriding the `getRouteKeyName` method in the model.
+- By default, Laravel uses the `id` column to retrieve the model. You can customize this by overriding the `getRouteKeyName` method in the model.
 
 **Example**:
 
--   In the `Post` model:
+- In the `Post` model:
 
 ```php
 public function getRouteKeyName()
@@ -3178,7 +3176,7 @@ public function getRouteKeyName()
 }
 ```
 
--   Now, the following route will match the `slug` column:
+- Now, the following route will match the `slug` column:
 
 ```php
 Route::get('/blogs/{blog}', function (Post $blog) {
@@ -3186,17 +3184,17 @@ Route::get('/blogs/{blog}', function (Post $blog) {
 });
 ```
 
--   Requesting `/blogs/my-first-post` will retrieve the `Post` model where `slug = 'my-first-post'`.
+- Requesting `/blogs/my-first-post` will retrieve the `Post` model where `slug = 'my-first-post'`.
 
 ---
 
 #### 3. **Explicit Binding**
 
--   Explicit binding lets you manually define how a route parameter should be resolved. This is useful for complex scenarios or custom logic.
+- Explicit binding lets you manually define how a route parameter should be resolved. This is useful for complex scenarios or custom logic.
 
 **Example**:
 
--   In the `RouteServiceProvider`:
+- In the `RouteServiceProvider`:
 
 ```php
 use App\Models\Post;
@@ -3207,7 +3205,7 @@ public function boot()
 }
 ```
 
--   Or use a closure for custom logic:
+- Or use a closure for custom logic:
 
 ```php
 Route::bind('blog', function ($value) {
@@ -3215,7 +3213,7 @@ Route::bind('blog', function ($value) {
 });
 ```
 
--   Now, the route:
+- Now, the route:
 
 ```php
 Route::get('/blogs/{blog}', function (Post $blog) {
@@ -3223,13 +3221,13 @@ Route::get('/blogs/{blog}', function (Post $blog) {
 });
 ```
 
--   Will use the custom binding logic to resolve the `blog` parameter.
+- Will use the custom binding logic to resolve the `blog` parameter.
 
 ---
 
 ### **Using Route Model Binding in Controllers**
 
--   Route model binding works seamlessly with controllers, especially resource controllers.
+- Route model binding works seamlessly with controllers, especially resource controllers.
 
 #### Example: Show Method in a Resource Controller
 
@@ -3247,13 +3245,13 @@ public function show(Post $blog)
 Route::resource('blogs', BlogController::class);
 ```
 
--   This generates routes like `/blogs/{blog}`, which automatically resolves the `{blog}` parameter to a `Post` instance in the controller methods.
+- This generates routes like `/blogs/{blog}`, which automatically resolves the `{blog}` parameter to a `Post` instance in the controller methods.
 
 ---
 
 ### **Route Model Binding and Validation**
 
--   You can use route model binding with additional validation.
+- You can use route model binding with additional validation.
 
 **Example**:
 
@@ -3264,20 +3262,20 @@ Route::get('/blogs/{blog}', function (Post $blog) {
 });
 ```
 
--   Here:
-    -   The `$blog` instance is resolved using route model binding.
-    -   Additional checks ensure the blog is published.
+- Here:
+  - The `$blog` instance is resolved using route model binding.
+  - Additional checks ensure the blog is published.
 
 ---
 
 ### **Error Handling**
 
--   If no model is found during route model binding:
+- If no model is found during route model binding:
 
-    -   Laravel automatically throws a `ModelNotFoundException`.
-    -   By default, this results in a `404 Not Found` response.
+  - Laravel automatically throws a `ModelNotFoundException`.
+  - By default, this results in a `404 Not Found` response.
 
--   You can customize this behavior in the `render` method of `App\Exceptions\Handler`:
+- You can customize this behavior in the `render` method of `App\Exceptions\Handler`:
 
 ```php
 public function render($request, Throwable $exception)
@@ -3296,19 +3294,19 @@ public function render($request, Throwable $exception)
 
 1. **Simplified Code**:
 
-    - No need for explicit queries in routes or controllers.
-    - Automatically injects the model instance.
+   - No need for explicit queries in routes or controllers.
+   - Automatically injects the model instance.
 
 2. **Improved Readability**:
 
-    - Makes routes and controllers easier to understand.
+   - Makes routes and controllers easier to understand.
 
 3. **Error Handling**:
 
-    - Ensures a `404` response for invalid parameters without extra code.
+   - Ensures a `404` response for invalid parameters without extra code.
 
 4. **Customizability**:
-    - Easily customize binding logic using `getRouteKeyName` or explicit bindings.
+   - Easily customize binding logic using `getRouteKeyName` or explicit bindings.
 
 ---
 
@@ -3366,11 +3364,250 @@ class BlogController extends Controller
 
 ### **Conclusion**
 
--   Route Model Binding is a Laravel feature that simplifies resource management by automatically resolving models for route parameters. It improves code clarity, enforces data consistency, and integrates seamlessly with RESTful routes and resource controllers. Whether you're using implicit or explicit binding, it helps create elegant, maintainable applications.
+- Route Model Binding is a Laravel feature that simplifies resource management by automatically resolving models for route parameters. It improves code clarity, enforces data consistency, and integrates seamlessly with RESTful routes and resource controllers. Whether you're using implicit or explicit binding, it helps create elegant, maintainable applications.
+
+# Authentication in Laravel
+
+- Authentication is a critical feature of most web applications. Laravel provides an easy-to-use and secure authentication system out of the box. It supports features like login, registration, password reset, email verification, and user roles.
+
+---
+
+### **How Laravel Handles Authentication**
+
+1. **Guards**
+
+- Guards define how users are authenticated. The default guard, `web`, uses sessions and cookies for stateful authentication. Other guards like `api` are available for token-based stateless authentication.
+
+  Example from `config/auth.php`:
+
+  ```php
+  'guards' => [
+      'web' => [
+          'driver' => 'session',
+          'provider' => 'users',
+      ],
+
+      'api' => [
+          'driver' => 'token',
+          'provider' => 'users',
+          'hash' => false,
+      ],
+  ],
+  ```
+
+2. **User Providers**
+
+- User providers define how users are retrieved from the database. By default, Laravel uses the `users` table and the `App\Models\User` model.
+
+- Example:
+
+```php
+'providers' => [
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\User::class,
+    ],
+],
+```
+
+3. **Middleware**
+
+- Laravel includes middleware like `auth` to protect routes. It checks if a user is authenticated before granting access to the route.
+
+Example:
+
+```php
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
+```
+
+---
+
+### **Setting Up Authentication**
+
+- Laravel offers several ways to set up authentication depending on your needs.
+
+#### 1. **Using Starter Kits**
+
+- The easiest way to add authentication is by using a starter kit like Laravel Breeze or Laravel Jetstream.  
+  For details, see the explanation on [Starter Kits and Breeze](#starter-kits-in-laravel).
+
+#### 2. **Manual Authentication Setup**
+
+- If you prefer not to use a starter kit, you can manually set up authentication:
+
+- **Step 1: Configure the User Model**
+
+  - Ensure your `User` model exists and has the necessary fields like `name`, `email`, and `password`.
+
+- **Step 2: Update Database Migrations**
+
+  - Check the `users` table migration to ensure it matches your application's requirements.
+
+  Example:
+
+  ```php
+  Schema::create('users', function (Blueprint $table) {
+      $table->id();
+      $table->string('name');
+      $table->string('email')->unique();
+      $table->timestamp('email_verified_at')->nullable();
+      $table->string('password');
+      $table->rememberToken();
+      $table->timestamps();
+  });
+  ```
+
+- **Step 3: Create Authentication Controllers**
+
+  - Laravel provides controllers to handle authentication, such as `LoginController`, `RegisterController`, and `ForgotPasswordController`. These can be customized as needed.
+
+- **Step 4: Define Routes**
+
+  - Define routes for login, registration, and logout in `routes/web.php`:
+
+  ```php
+  Route::get('/login', [LoginController::class, 'showLoginForm']);
+  Route::post('/login', [LoginController::class, 'login']);
+  Route::post('/logout', [LoginController::class, 'logout']);
+  ```
+
+- **Step 5: Protect Routes with Middleware**
+  - Use the `auth` middleware to secure routes:
+  ```php
+  Route::get('/profile', function () {
+      // Only authenticated users can access this route.
+  })->middleware('auth');
+  ```
+
+---
+
+### **Laravel Authentication Example**
+
+#### Login Example
+
+- Controller:
+
+```php
+use Illuminate\Support\Facades\Auth;
+
+public function login(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        return redirect()->intended('dashboard');
+    }
+
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ]);
+}
+```
+
+- View (Blade Template):
+
+```html
+<form method="POST" action="/login">
+  @csrf
+  <label for="email">Email</label>
+  <input type="email" name="email" id="email" required />
+
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" required />
+
+  <button type="submit">Login</button>
+</form>
+```
+
+#### Logout Example
+
+- Controller:
+
+```php
+public function logout(Request $request)
+{
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+}
+```
+
+- Route:
+
+```php
+Route::post('/logout', [AuthController::class, 'logout']);
+```
+
+---
+
+### **Email Verification**
+
+- Laravel includes email verification for additional security. To enable it:
+
+1. Ensure the `users` table migration includes the `email_verified_at` column.
+2. Use the `verified` middleware to protect routes:
+
+   ```php
+   Route::get('/dashboard', function () {
+       return view('dashboard');
+   })->middleware(['auth', 'verified']);
+   ```
+
+3. Send email verification links via the `MustVerifyEmail` interface:
+
+   ```php
+   use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+   class User extends Authenticatable implements MustVerifyEmail
+   {
+       // ...
+   }
+   ```
+
+---
+
+### **Password Reset**
+
+- Laravel includes a password reset feature by default. Routes and controllers for this feature are included when you use starter kits like Breeze.
+
+- **Request a Password Reset**  
+   View for requesting a reset:
+
+  ```html
+  <form method="POST" action="/forgot-password">
+    @csrf
+    <input type="email" name="email" required />
+    <button type="submit">Send Reset Link</button>
+  </form>
+  ```
+
+- **Reset Password**
+- After clicking the reset link in the email, users can reset their password:
+  ```html
+  <form method="POST" action="/reset-password">
+    @csrf
+    <input type="hidden" name="token" value="{{ $token }}" />
+    <input type="email" name="email" required />
+    <input type="password" name="password" required />
+    <input type="password" name="password_confirmation" required />
+    <button type="submit">Reset Password</button>
+  </form>
+  ```
+
+---
+
+### **Conclusion**
+
+- Laravel’s authentication system is both powerful and easy to use. Whether you use starter kits like Laravel Breeze or implement it manually, the framework provides all the tools you need to secure your application.
 
 # Route Groups in Laravel
 
--   Route groups in Laravel are a powerful way to organize routes, apply shared attributes (such as middleware or prefixes), and reduce redundancy in your routing definitions. By grouping routes, you can streamline the configuration and make your code more maintainable.
+- Route groups in Laravel are a powerful way to organize routes, apply shared attributes (such as middleware or prefixes), and reduce redundancy in your routing definitions. By grouping routes, you can streamline the configuration and make your code more maintainable.
 
 ---
 
@@ -3391,7 +3628,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 ```
 
--   Route Groups with middleware
+- Route Groups with middleware
 
 ```php
 Route::group(['middleware' => 'auth'], function () {
@@ -3402,7 +3639,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 In this example:
 
--   Both routes share the `auth` middleware, ensuring only authenticated users can access these routes.
+- Both routes share the `auth` middleware, ensuring only authenticated users can access these routes.
 
 ---
 
@@ -3420,65 +3657,65 @@ In this example:
 
 1. **Middleware**
 
-    Apply middleware to all routes within the group:
+   Apply middleware to all routes within the group:
 
-    ```php
-    Route::group(['middleware' => ['auth', 'verified']], function () {
-        Route::get('/settings', [SettingsController::class, 'index']);
-        Route::get('/account', [AccountController::class, 'index']);
-    });
-    ```
+   ```php
+   Route::group(['middleware' => ['auth', 'verified']], function () {
+       Route::get('/settings', [SettingsController::class, 'index']);
+       Route::get('/account', [AccountController::class, 'index']);
+   });
+   ```
 
 2. **Prefixes**
 
-    Add a shared prefix to the routes:
+   Add a shared prefix to the routes:
 
-    ```php
-    Route::group(['prefix' => 'admin'], function () {
-        Route::get('/users', [AdminUserController::class, 'index']);
-        Route::get('/settings', [AdminSettingsController::class, 'index']);
-    });
-    ```
+   ```php
+   Route::group(['prefix' => 'admin'], function () {
+       Route::get('/users', [AdminUserController::class, 'index']);
+       Route::get('/settings', [AdminSettingsController::class, 'index']);
+   });
+   ```
 
-    - The resulting URLs would be `/admin/users` and `/admin/settings`.
+   - The resulting URLs would be `/admin/users` and `/admin/settings`.
 
 3. **Namespaces**
 
-    Specify a namespace for controllers:
+   Specify a namespace for controllers:
 
-    ```php
-    Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/dashboard', 'DashboardController@index');
-        Route::get('/reports', 'ReportsController@index');
-    });
-    ```
+   ```php
+   Route::group(['namespace' => 'Admin'], function () {
+       Route::get('/dashboard', 'DashboardController@index');
+       Route::get('/reports', 'ReportsController@index');
+   });
+   ```
 
-    - Controllers `DashboardController` and `ReportsController` are located in the `App\Http\Controllers\Admin` namespace.
+   - Controllers `DashboardController` and `ReportsController` are located in the `App\Http\Controllers\Admin` namespace.
 
 4. **Subdomains**
 
-    Define routes for a specific subdomain:
+   Define routes for a specific subdomain:
 
-    ```php
-    Route::group(['domain' => '{account}.example.com'], function () {
-        Route::get('/dashboard', [DashboardController::class, 'index']);
-    });
-    ```
+   ```php
+   Route::group(['domain' => '{account}.example.com'], function () {
+       Route::get('/dashboard', [DashboardController::class, 'index']);
+   });
+   ```
 
-    - `{account}` is a wildcard, allowing dynamic subdomain routing.
+   - `{account}` is a wildcard, allowing dynamic subdomain routing.
 
 5. **Localization**
 
-    Group routes for localized URLs:
+   Group routes for localized URLs:
 
-    ```php
-    Route::group(['prefix' => '{locale}', 'middleware' => 'setLocale'], function () {
-        Route::get('/about', [AboutController::class, 'index']);
-        Route::get('/contact', [ContactController::class, 'index']);
-    });
-    ```
+   ```php
+   Route::group(['prefix' => '{locale}', 'middleware' => 'setLocale'], function () {
+       Route::get('/about', [AboutController::class, 'index']);
+       Route::get('/contact', [ContactController::class, 'index']);
+   });
+   ```
 
-    - URLs like `/en/about` or `/fr/about` are supported.
+   - URLs like `/en/about` or `/fr/about` are supported.
 
 ---
 
@@ -3495,7 +3732,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 });
 ```
 
--   The resulting URLs would be `/admin/users` and `/admin/users/{id}`, with the `auth` middleware applied to both.
+- The resulting URLs would be `/admin/users` and `/admin/users/{id}`, with the `auth` middleware applied to both.
 
 ---
 
@@ -3517,9 +3754,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 });
 ```
 
--   **Prefix**: All routes are prefixed with `/admin`.
--   **Middleware**: Both `auth` and `admin` middleware ensure only authenticated admin users can access these routes.
--   **Routes**: The routes handle admin-specific functionalities.
+- **Prefix**: All routes are prefixed with `/admin`.
+- **Middleware**: Both `auth` and `admin` middleware ensure only authenticated admin users can access these routes.
+- **Routes**: The routes handle admin-specific functionalities.
 
 ---
 
@@ -3531,19 +3768,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
 # Route Resources in Laravel
 
--   Route resources in Laravel provide a convenient way to define routes for CRUD (Create, Read, Update, Delete) operations. With a single line of code, you can generate all the necessary routes for interacting with a specific resource (e.g., `posts`, `users`, or `products`).
+- Route resources in Laravel provide a convenient way to define routes for CRUD (Create, Read, Update, Delete) operations. With a single line of code, you can generate all the necessary routes for interacting with a specific resource (e.g., `posts`, `users`, or `products`).
 
 ---
 
 ### **Defining a Resource Route**
 
--   You can define a resource route using the `Route::resource` method. For example:
+- You can define a resource route using the `Route::resource` method. For example:
 
 ```php
 Route::resource('posts', PostController::class);
 ```
 
--   This single line generates the following routes:
+- This single line generates the following routes:
 
 | HTTP Method | URL                | Action  | Controller Method | Purpose                    |
 | ----------- | ------------------ | ------- | ----------------- | -------------------------- |
@@ -3559,7 +3796,7 @@ Route::resource('posts', PostController::class);
 
 ### **Controller for Resource Routes**
 
--   The corresponding controller (e.g., `PostController`) must have methods for each route:
+- The corresponding controller (e.g., `PostController`) must have methods for each route:
 
 ```php
 namespace App\Http\Controllers;
@@ -3612,59 +3849,59 @@ class PostController extends Controller
 
 1. **Limiting the Routes**
 
-    - If you don't need all the routes, you can specify which ones to include using the `only` or `except` options:
+   - If you don't need all the routes, you can specify which ones to include using the `only` or `except` options:
 
-    ```php
-    Route::resource('posts', PostController::class)->only(['index', 'show']);
-    Route::resource('posts', PostController::class)->except(['create', 'edit']);
-    ```
+   ```php
+   Route::resource('posts', PostController::class)->only(['index', 'show']);
+   Route::resource('posts', PostController::class)->except(['create', 'edit']);
+   ```
 
 2. **Changing Route Names**
 
-    - You can customize the route names using the `names` option:
+   - You can customize the route names using the `names` option:
 
-    ```php
-    Route::resource('posts', PostController::class)->names([
-        'index' => 'posts.list',
-        'show' => 'posts.view',
-    ]);
-    ```
+   ```php
+   Route::resource('posts', PostController::class)->names([
+       'index' => 'posts.list',
+       'show' => 'posts.view',
+   ]);
+   ```
 
 3. **Customizing Route Parameters**
 
-    - You can change the default `{id}` parameter using the `parameters` option:
+   - You can change the default `{id}` parameter using the `parameters` option:
 
-    ```php
-    Route::resource('posts', PostController::class)->parameters([
-        'posts' => 'post_id',
-    ]);
-    ```
+   ```php
+   Route::resource('posts', PostController::class)->parameters([
+       'posts' => 'post_id',
+   ]);
+   ```
 
-    - The route `/posts/{post_id}` will now use `post_id` instead of the default `post`.
+   - The route `/posts/{post_id}` will now use `post_id` instead of the default `post`.
 
 4. **Route Prefixes**
 
-    - Use the `prefix` method to group resource routes under a specific URL prefix:
+   - Use the `prefix` method to group resource routes under a specific URL prefix:
 
-    ```php
-    Route::prefix('admin')->group(function () {
-        Route::resource('posts', PostController::class);
-    });
-    ```
+   ```php
+   Route::prefix('admin')->group(function () {
+       Route::resource('posts', PostController::class);
+   });
+   ```
 
-    - The routes will now be prefixed with `/admin`, e.g., `/admin/posts`.
+   - The routes will now be prefixed with `/admin`, e.g., `/admin/posts`.
 
 ---
 
 ### **API Resource Routes**
 
--   For API development, Laravel provides the `Route::apiResource` method, which generates resource routes without the `create` and `edit` routes (since forms are not used in APIs):
+- For API development, Laravel provides the `Route::apiResource` method, which generates resource routes without the `create` and `edit` routes (since forms are not used in APIs):
 
 ```php
 Route::apiResource('posts', PostController::class);
 ```
 
--   This generates the following routes:
+- This generates the following routes:
 
 | HTTP Method | URL           | Action  | Controller Method |
 | ----------- | ------------- | ------- | ----------------- |
@@ -3678,7 +3915,7 @@ Route::apiResource('posts', PostController::class);
 
 ### **Middleware with Resource Routes**
 
--   You can apply middleware to a resource route just like any other route:
+- You can apply middleware to a resource route just like any other route:
 
 ```php
 Route::resource('posts', PostController::class)->middleware('auth');
@@ -3700,3 +3937,204 @@ Route::resource('posts', PostController::class)->middleware('auth');
 2. Limit routes with `only` or `except` if not all CRUD actions are needed.
 3. Use API resources (`Route::apiResource`) for RESTful APIs, as it eliminates unnecessary routes like `create` and `edit`.
 4. Always pair resource routes with meaningful controller methods for clarity and maintainability.
+
+# Starter Kits in Laravel
+
+- Laravel provides starter kits to help developers quickly scaffold common features in a web application, such as authentication, registration, and password reset functionalities. These kits eliminate the need to manually set up these features, saving time and effort while following best practices.
+
+---
+
+### **Types of Starter Kits**
+
+1. **Laravel Breeze**
+
+   - Lightweight and minimal.
+   - Provides basic authentication features like login, registration, password reset, email verification, and profile updates.
+   - Uses simple Blade templates or Inertia.js (with Vue or React) for the frontend.
+   - Ideal for small projects or developers who prefer a minimal setup.
+
+2. **Laravel Jetstream**
+
+   - More advanced than Breeze.
+   - Includes features like two-factor authentication, API token management, team management, and session management.
+   - Works with Blade or Inertia.js (with Vue or React).
+   - Suitable for applications requiring additional features beyond basic authentication.
+
+3. **Laravel UI**
+   - Provides the frontend scaffolding for authentication using Bootstrap, Vue.js, or React.
+   - Predates Breeze and Jetstream.
+   - Requires manual installation of npm dependencies and compilation.
+
+---
+
+### **Laravel Breeze: A Closer Look**
+
+#### **Installation**
+
+- Laravel Breeze can be installed with a single command:
+
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install
+```
+
+- You can specify the stack (Blade, Vue, or React with Inertia.js) during installation:
+
+```bash
+php artisan breeze:install blade
+php artisan breeze:install react
+php artisan breeze:install vue
+```
+
+#### **Setup**
+
+1. After installation, run the following commands to compile frontend assets and migrate the database:
+
+```bash
+npm install
+npm run dev
+php artisan migrate
+```
+
+2. The above commands scaffold basic authentication views and logic.
+
+---
+
+#### **Features of Breeze**
+
+- **Blade Stack**: Provides a traditional Blade-based approach with minimal JavaScript.
+- **Inertia Stack**: Uses modern single-page applications (SPA) powered by Vue or React with server-side routing.
+- **Simple and Extendable**: Minimal structure that allows developers to easily build upon it.
+- **Prebuilt Routes and Controllers**:
+  - Authentication routes (`/login`, `/register`, `/logout`, etc.).
+  - Controllers for handling authentication actions like `AuthenticatedSessionController`, `RegisteredUserController`, and more.
+
+---
+
+#### **Example Files in Breeze (Blade)**
+
+1. **Routes**:
+
+- Routes for Breeze are predefined in `routes/web.php`:
+
+```php
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+```
+
+2. **Views**:
+
+- Authentication views are stored in `resources/views/auth` (e.g., `login.blade.php`, `register.blade.php`).
+
+3. **Controllers**:
+
+- Authentication logic resides in `App\Http\Controllers\Auth`.
+
+---
+
+### **Middlewares in Laravel**
+
+- Middlewares are filters that sit between the request and response of an application. They provide a mechanism to inspect, modify, or handle requests before they reach the controller or responses before they are sent back to the client.
+
+---
+
+#### **Common Uses of Middleware**
+
+1. **Authentication**: Restrict access to routes based on user authentication.
+2. **Authorization**: Check if a user has permission to perform a certain action.
+3. **CSRF Protection**: Ensure the request comes from the authenticated user.
+4. **Logging**: Log details of requests and responses.
+5. **Maintenance Mode**: Temporarily disable access during maintenance.
+
+---
+
+#### **Built-in Middleware in Laravel**
+
+Laravel comes with several prebuilt middlewares, such as:
+
+- `auth`: Ensures the user is authenticated.
+- `guest`: Redirects authenticated users from guest-only pages.
+- `throttle`: Limits the number of requests to prevent abuse.
+- `verified`: Ensures the user has verified their email.
+
+---
+
+#### **Creating Custom Middleware**
+
+- You can create custom middleware using the `make:middleware` artisan command:
+
+```bash
+php artisan make:middleware CheckUserType
+```
+
+- This creates a file in `app/Http/Middleware`. Modify the `handle` method:
+
+```php
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class CheckUserType
+{
+    public function handle(Request $request, Closure $next)
+    {
+        if ($request->user() && $request->user()->type !== 'admin') {
+            return redirect('home');
+        }
+
+        return $next($request);
+    }
+}
+```
+
+---
+
+#### **Registering Middleware**
+
+1. **Global Middleware**:
+
+- Register in `app/Http/Kernel.php` under the `$middleware` array.
+
+2. **Route Middleware**:
+
+- Register in the `$routeMiddleware` array of the same file:
+
+```php
+'check.type' => \App\Http\Middleware\CheckUserType::class,
+```
+
+- Then apply to routes:
+
+```php
+Route::middleware(['check.type'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+});
+```
+
+---
+
+#### **Middleware Groups**
+
+- Middleware groups allow combining multiple middlewares under a single name for simplicity. For example:
+
+```php
+'web' => [
+    \App\Http\Middleware\EncryptCookies::class,
+    \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+    \Illuminate\Session\Middleware\StartSession::class,
+    // Other web middlewares
+],
+```
+
+---
+
+### **Combining Breeze and Middleware**
+
+1. Breeze uses the `auth` middleware to secure routes like `/dashboard`.
+2. Middleware like `verified` ensures users verify their email before accessing certain routes.
+
+- By combining Breeze's scaffolding and Laravel's middleware, you can build robust and secure web applications quickly.
