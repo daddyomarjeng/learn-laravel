@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class BlogController extends Controller
 {
@@ -14,9 +16,9 @@ class BlogController extends Controller
     public function create(){
         return view('blogs.create');
     }
-    public function show(Post $blog){
+    public function show(Post $post){
         // dd($blog);
-    return view('blogs.show', ['blog'=>$blog]);
+    return view('blogs.show', ['blog'=>$post]);
     }
     public function store(Request $request){
         $validated = $request->validate([
@@ -29,8 +31,11 @@ class BlogController extends Controller
         return redirect('/blogs');
 
     }
-    public function edit(Post $blog){
-        return view('blogs.edit', ['blog'=>$blog]);
+    public function edit(Post $post){
+        // if(Auth::guest()) return redirect("/login");
+        // if($blog->author->isNot(Auth::user())) return abort(403);
+        // Gate::authorize("update-post", $post);
+        return view('blogs.edit', ['blog'=>$post]);
     }
     public function update(Request $request, Post $blog){
         $validated = $request->validate([

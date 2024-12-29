@@ -1,17 +1,46 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\SessionController;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 
+// auth
+Route::get("/register", [RegisteredUserController::class, "create"]);
+Route::post("/register", [RegisteredUserController::class, "store"]);
+
+Route::get("/login", [SessionController::class, "create"])->name("login");
+Route::post("/login", [SessionController::class, "store"]);
+Route::post("/logout", [SessionController::class, "destroy"]);
+
+// Blogs Routes
+// Route::resource("/blogs", BlogController::class);
+Route::controller(BlogController::class)->group(function(){
+    Route::get("/blogs","index");
+
+    Route::get('/blogs/create', "create")
+        ->middleware("auth");
+
+    Route::get('/blogs/{post}',  "show");
+
+    Route::post('/blogs',  "store" )
+        ->middleware("auth");
+
+    Route::get('/blogs/{post}/edit',  "edit")
+        ->middleware(["auth"])
+        ->can('edit', 'post');
+
+    Route::put('/blogs/{post}',  "update");
+
+    Route::delete('/blogs/{post}',"destroy");
+});
+
 Route::view('/', 'home');
 Route::view('/contact', 'contact');
-// Blogs Routes
-Route::resource("/blogs", BlogController::class);
-
 
 
 // // Blogs Routes

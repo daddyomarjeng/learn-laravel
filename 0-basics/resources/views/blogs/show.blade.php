@@ -2,9 +2,11 @@
     <x-slot:heading>
         Blog Page
     </x-slot:heading>
-    <div class="flex items-center justify-between flex-wrap">
-        <h2 class="font-bold">{{ $blog['title'] }}</h2>
-        <x-button href="/blogs/{{ $blog->id }}/edit">Edit Post</x-button>
+    <div class="flex items-center justify-between flex-wrap gap-4">
+        <h2 class="font-bold flex-1">{{ $blog['title'] }}</h2>
+        @can('edit', $blog)
+            <x-button href="/blogs/{{ $blog->id }}/edit">Edit Post</x-button>
+        @endcan
     </div>
 
     <p class="my-8 text-sm">
