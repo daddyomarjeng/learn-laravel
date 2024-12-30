@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PostCreated;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class BlogController extends Controller
 {
@@ -26,8 +28,10 @@ class BlogController extends Controller
             'content' => 'required|min:5',
         ]);
 
-        Post::create([...$validated, "user_id"=>1]);
-
+        $post  = Post::create([...$validated, "user_id"=>1]);
+        Mail::to($post->author)->send(
+            new PostCreated($post)
+        );
         return redirect('/blogs');
 
     }

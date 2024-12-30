@@ -4404,3 +4404,168 @@ Route::middleware(['check.type'])->group(function () {
 2. Middleware like `verified` ensures users verify their email before accessing certain routes.
 
 - By combining Breeze's scaffolding and Laravel's middleware, you can build robust and secure web applications quickly.
+
+# Emails in Laravel
+
+- Laravel provides a clean, simple, and flexible API to send emails. It supports various email drivers like SMTP, Mailgun, Postmark, Amazon SES, and more.
+
+---
+
+### **Setting Up Emails**
+
+1. **Configure Email Settings**
+
+- Laravel's email settings are defined in the `.env` file. Here’s an example for SMTP:
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=example@example.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+- Supported mailers include:
+
+  - SMTP
+  - Mailgun
+  - Postmark
+  - Amazon SES
+  - Sendmail
+  - Log
+
+- The corresponding configuration can be found in **`config/mail.php`**.
+
+---
+
+### **Sending Emails**
+
+1. **Using the `Mail` Facade**
+
+- You can send emails using the `Mail` facade.
+
+- Example:
+
+```php
+use Illuminate\Support\Facades\Mail;
+
+Mail::to('recipient@example.com')->send(new \App\Mail\WelcomeEmail());
+```
+
+2. **Creating Mailable Classes**
+
+- Mailables are responsible for constructing email messages. Generate a Mailable using:
+
+```bash
+php artisan make:mail WelcomeEmail
+```
+
+- This will create a new file in **`app/Mail/WelcomeEmail.php`**.
+
+---
+
+### **Example: Welcome Email**
+
+1. **Define the Mailable**
+
+- **File:** `app/Mail/WelcomeEmail.php`
+
+```php
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class WelcomeEmail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public $user;
+
+    public function __construct($user)
+    {
+        $this->user = $user;
+    }
+
+    public function build()
+    {
+        return $this->view('emails.welcome')
+                    ->subject('Welcome to Our Application')
+                    ->with(['user' => $this->user]);
+    }
+    // or
+    public function __construct(public User $user)
+    {
+        //
+    }
+
+    public function envelope(): Envelope
+    {
+        return new Envelope(
+            subject: 'Account Created',
+        );
+    }
+
+     public function content(): Content
+    {
+        return new Content(
+            view: 'emails.welcome',
+        );
+    }
+    // email subject and variable injecting is all done by laravel
+
+}
+```
+
+> By default the data passed to the mailer's constructor is public and all instances of the mailable class are availe to the template, meaning the emailing template file has access to it all, if you want it to have access to only specific fields you can make it protected and send only the required data.
+
+```php
+public function __construct(protected User $user)
+{
+        //
+}
+public function content(): Content
+{
+    return new Content(
+        view: 'mail.post-created',
+        with:["name"=>$user->name]
+    );
+}
+```
+
+2. **Create the Email View**
+
+- **File:** `resources/views/emails/welcome.blade.php`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome Email</title>
+  </head>
+  <body>
+    <h1>Hello, {{ $user->name }}!</h1>
+    <p>Welcome to our application. We're glad to have you here!</p>
+  </body>
+</html>
+```
+
+3. **Send the Email**
+
+- **Example Usage:**
+
+```php
+use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
+
+public function sendWelcomeEmail(User $user)
+{
+    Mail::to($user->email)->send(new WelcomeEmail($user));
+}
+```
+
+---
