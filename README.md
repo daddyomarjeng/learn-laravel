@@ -4569,3 +4569,128 @@ public function sendWelcomeEmail(User $user)
 ```
 
 ---
+
+### **Advanced Email Features**
+
+#### 1. **Email Attachments**
+
+- Attach files to an email using the `attach` method:
+
+```php
+return $this->view('emails.welcome')
+            ->attach(storage_path('app/documents/example.pdf'), [
+                'as' => 'WelcomeGuide.pdf',
+                'mime' => 'application/pdf',
+            ]);
+```
+
+#### 2. **Markdown Emails**
+
+- Laravel provides built-in support for Markdown to create beautiful email templates.
+
+- Generate a Markdown Mailable:
+
+```bash
+php artisan make:mail WelcomeEmail --markdown=emails.welcome
+```
+
+- This creates a file in **`resources/views/emails/welcome.blade.php`** with a Markdown-based layout.
+
+- Example:
+
+```php
+@component('mail::message')
+# Welcome to Our Application
+
+Hello, {{ $user->name }}!
+
+We're excited to have you on board.
+
+@component('mail::button', ['url' => 'https://example.com'])
+Get Started
+@endcomponent
+
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent
+```
+
+#### 3. **Queueing Emails**
+
+- Queueing emails improves performance by offloading the email-sending process to a background job.
+
+- To queue an email, implement the `ShouldQueue` interface:
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+class WelcomeEmail extends Mailable implements ShouldQueue
+{
+    // Email logic
+}
+```
+
+- Use the `queue` method to send the email:
+
+```php
+Mail::to($user->email)->queue(new WelcomeEmail($user));
+```
+
+#### 4. **Customizing Email Headers**
+
+- Add custom headers to your emails using the `withSwiftMessage` method:
+
+```php
+public function build()
+{
+    return $this->view('emails.welcome')
+                ->withSwiftMessage(function ($message) {
+                    $message->getHeaders()
+                            ->addTextHeader('X-Custom-Header', 'CustomValue');
+                });
+}
+```
+
+---
+
+### **Testing Emails**
+
+1. **Using the Log Mail Driver**
+
+- During development, you can use the `log` mail driver to log emails instead of sending them.
+
+- **In `.env`:**
+
+```env
+MAIL_MAILER=log
+```
+
+- Emails will be logged in **`storage/logs/laravel.log`**.
+
+2. **Using Mailtrap**
+
+- Mailtrap is a testing service for capturing emails sent during development.
+
+- **Example `.env` Configuration:**
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_mailtrap_username
+MAIL_PASSWORD=your_mailtrap_password
+```
+
+3. **Previewing Emails**
+
+- You can preview emails in the browser using the `render` method:
+
+```php
+return (new WelcomeEmail($user))->render();
+```
+
+---
+
+### **Conclusion**
+
+- Laravel makes it easy to send emails with rich features like attachments, queueing, Markdown templates, and more. Whether you’re sending transactional emails or newsletters, Laravel provides a flexible and developer-friendly API.
